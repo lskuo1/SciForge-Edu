@@ -1,5 +1,25 @@
 # Changelog
 
+## v0.2-core-data-models
+
+Added:
+
+- Implement provenance model and tests
+- Implement choice model and tests
+- Implement solution model and tests
+- Implement analysis model and tests
+- Implement version model and tests
+- Implement question model and tests
+- Add assessment statistics model draft
+- Add question statistics separation principle
+
+Notes:
+
+- AssessmentStatistics currently remains
+  temporarily inside question.py
+
+---
+
 ## v0.1-spec-foundation
 
 - Initialize repository
@@ -15,8 +35,3 @@
 - Add rendering drafts
 
 ## Unreleased
-
-Added:
-
-- Question statistics separation principle
-- Assessment statistics model draft
