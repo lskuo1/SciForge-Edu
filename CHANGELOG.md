@@ -35,3 +35,6 @@ Notes:
 - Add rendering drafts
 
 ## Unreleased
+
+Added:
+- Initial coding policy draft
