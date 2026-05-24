@@ -78,8 +78,18 @@ class QuestionVersion:
     change_note:str
 ```
 
----
+## 6.5 AssessmentStatistics
 
+```python
+class AssessmentStatistics:
+    exam_id:str
+    correct_rate:Optional[float]
+    difficulty_index:Optional[float]
+    discrimination_index:Optional[float]
+    sample_size:Optional[int]
+```
+
+---
 ## 7. SourceInfo
 
 ```python
@@ -102,6 +112,7 @@ class Question:
     choices:list[Choice]
     solution_tex:Optional[str]
     analysis:Optional[QuestionAnalysis]
+    statistics:list[AssessmentStatistics]
     source:Optional[SourceInfo]
     current_version:int
     history:list[QuestionVersion]
@@ -198,3 +209,63 @@ Allowed:
 - AI 新增分析資訊
 - AI 新增 metadata
 - AI 新增 extra 欄位
+
+# Question Statistics Separation Principle
+
+## Motivation
+
+Question intrinsic properties and assessment
+results are fundamentally different concepts.
+
+Intrinsic properties describe the question itself.
+
+Assessment results describe observed behavior
+from actual exams.
+
+Mixing them would create ambiguity.
+
+Example:
+
+Same question
+
+Grade 8 regular class
+→ difficult
+
+Gifted class
+→ easy
+
+Difficulty can vary by population.
+
+---
+
+## Intrinsic Question Analysis
+
+Examples:
+
+- subject
+- chapter
+- tags
+- misconceptions
+- estimated difficulty
+
+These properties belong to:
+
+Question.analysis
+
+---
+
+## Assessment Statistics
+
+Examples:
+
+- correct rate
+- discrimination index
+- difficulty index
+- sample size
+
+These properties belong to:
+
+Question.statistics[]
+
+Multiple assessment records may exist
+for a single question.

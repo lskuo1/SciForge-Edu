@@ -236,6 +236,61 @@ Purpose:
 - question popularity
 - future analytics
 
+# 9.5 Assessment Statistics
+
+Question may accumulate multiple
+assessment records across exams.
+
+Example:
+
+QuestionStatistics:
+
+{
+
+uuid:"Q-a72f",
+
+records:[
+
+{
+
+exam_id:"1141_midterm",
+
+correct_rate:0.62,
+
+difficulty_index:0.38,
+
+discrimination_index:0.48,
+
+sample_size:240
+
+},
+
+{
+
+exam_id:"115_mock_3",
+
+correct_rate:0.84,
+
+difficulty_index:0.16,
+
+discrimination_index:0.31,
+
+sample_size:180
+
+}
+
+]
+
+}
+
+Notes:
+
+- Statistics belong to exam observations
+- Statistics are NOT intrinsic question properties
+- Multiple statistics records may exist
+- Statistics may be imported from OMR systems
+
+
 ---
 
 # 10. Origin Metadata

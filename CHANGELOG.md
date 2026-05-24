@@ -14,3 +14,9 @@
 - Add workflow drafts
 - Add rendering drafts
 
+## Unreleased
+
+Added:
+
+- Question statistics separation principle
+- Assessment statistics model draft
