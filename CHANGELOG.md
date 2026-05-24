@@ -37,4 +37,6 @@ Notes:
 ## Unreleased
 
 Added:
-- Initial coding policy draft
+- Add source model
+- Add module purpose documentation
+- Add change policy draft
