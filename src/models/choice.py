@@ -1,15 +1,10 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 
 class Choice(BaseModel):
     """
     Multiple-choice option.
     """
-
-    label: str = Field(
-        min_length=1,
-        max_length=5
-    )
 
     text_tex: str
 
