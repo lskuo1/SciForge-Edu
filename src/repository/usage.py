@@ -21,7 +21,7 @@ It does NOT store question content.
 
 from datetime import date
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class UsageRecord(BaseModel):
@@ -41,4 +41,6 @@ class QuestionUsage(BaseModel):
 
     uuid: str
 
-    used_in: list[UsageRecord] = []
+    used_in: list[UsageRecord] = Field(
+        default_factory=list
+    )
