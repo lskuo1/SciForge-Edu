@@ -1,9 +1,28 @@
+"""
+question.py
+
+Purpose:
+Define the core Question Object.
+
+Responsibilities:
+
+- Store question content
+- Connect related models
+- Maintain version history
+
+Notes:
+
+Question Object is the single source of truth.
+"""
+
+
 from pydantic import BaseModel, Field
 
 from src.models.choice import Choice
 from src.models.solution import Solution
 from src.models.analysis import Analysis
 from src.models.version import Version
+from src.models.source import Source
 
 
 class AssessmentStatistics(BaseModel):
@@ -47,6 +66,8 @@ class Question(BaseModel):
     statistics: list[AssessmentStatistics] = Field(
         default_factory=list
     )
+
+    source: Source | None = None
 
     current_version: int = 1
 

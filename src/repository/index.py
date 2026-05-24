@@ -1,3 +1,22 @@
+"""
+index.py
+
+Purpose:
+Store repository search entries.
+
+Responsibilities:
+
+- Support fast question search
+- Store metadata
+- Avoid loading complete questions
+
+Notes:
+
+Repository index does not contain
+complete question content.
+"""
+
+
 from pydantic import BaseModel, Field
 
 

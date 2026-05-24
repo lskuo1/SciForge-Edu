@@ -1,3 +1,21 @@
+"""
+choice.py
+
+Purpose:
+Define choice objects for questions.
+
+Responsibilities:
+
+- Store option content
+- Store answer correctness
+
+Notes:
+
+Choice labels (A/B/C/D) belong to
+presentation layer, not data layer.
+"""
+
+
 from pydantic import BaseModel
 
 

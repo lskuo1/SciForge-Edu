@@ -1,7 +1,26 @@
+"""
+analysis.py
+
+Purpose:
+Store question analysis metadata.
+
+Responsibilities:
+
+- Store estimated difficulty
+- Store chapter and tags
+- Store misconceptions
+- Preserve analysis provenance
+
+Notes:
+
+Analysis contains intrinsic question properties.
+
+Observed exam statistics belong elsewhere.
+"""
+
+
 from pydantic import BaseModel, Field
-
 from src.models.provenance import Provenance
-
 
 class Analysis(BaseModel):
     """
