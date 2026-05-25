@@ -1,0 +1,11 @@
+[project]
+
+dependencies = [
+    "pydantic"
+]
+
+[project.optional-dependencies]
+
+dev = [
+    "pytest"
+]

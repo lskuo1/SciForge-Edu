@@ -3,6 +3,25 @@
 Educational Question Asset Management
 and Exam Generation System
 
+## Quick Start
+
+Environment setup:
+
+See: docs/governance/environment_setup.md
+
+Basic workflow:
+
+1. Clone repository
+2. Create virtual environment
+3. Install dependencies
+4. Run tests
+
+```bash
+pip install -e .[dev]
+
+pytest
+```
+
 ---
 
 ## Project Status
