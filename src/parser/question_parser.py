@@ -19,6 +19,8 @@ simple \\question syntax.
 import re
 from src.models.choice import Choice
 from src.models.question import Question
+from src.models.solution import Solution
+from src.models.provenance import Provenance
 
 
 class QuestionParser:
@@ -47,11 +49,28 @@ class QuestionParser:
             for c in choice_matches
         ]
 
+        solution_match = re.search(
+            r"\\solution\s+(.*)",
+            text
+        )
+
+        solution = None
+
+        if solution_match:
+            solution = Solution(
+                content_tex=solution_match.group(1),
+                provenance=Provenance(
+                    source_type="system",
+                    source_name="question_parser",
+                    created_by="system"
+                )
+            )
         return Question(
             uuid="TEMP",
             label="TEMP",
             question_type="single_choice",
             points=0,
             stem_tex=stem,
-            choices=choices
+            choices=choices,
+            solution=solution
         )

@@ -61,3 +61,26 @@ def test_parse_choices():
         ==
         "HCl"
     )
+
+def test_parse_solution():
+
+    parser = QuestionParser()
+
+    q = parser.parse(
+        r"""
+        \question Which is acid?
+
+        \choice HCl
+        \choice NaOH
+
+        \solution HCl is hydrochloric acid.
+        """
+    )
+
+    assert q.solution is not None
+
+    assert (
+        q.solution.content_tex
+        ==
+        "HCl is hydrochloric acid."
+    )
