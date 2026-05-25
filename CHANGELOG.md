@@ -40,3 +40,4 @@ Added:
 - Add source model
 - Add module purpose documentation
 - Add change policy draft
+- Add repository storage specification draft
