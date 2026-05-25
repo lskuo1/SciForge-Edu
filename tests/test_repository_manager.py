@@ -11,3 +11,37 @@ def test_create_repository_manager():
     assert str(
         r.repository_root
     ) == "repository"
+
+from src.models.question import Question
+
+def test_save_question(tmp_path):
+
+    r = RepositoryManager(
+
+        repository_root=tmp_path
+    )
+
+    q = Question(
+
+        uuid="Q-a72f",
+
+        label="Q1",
+
+        question_type="single_choice",
+
+        points=2,
+
+        stem_tex="What is HCl?"
+    )
+
+    r.save_question(q)
+
+    saved = (
+
+        tmp_path
+        / "questions"
+        / "Q-a72f"
+        / "question.json"
+    )
+
+    assert saved.exists()

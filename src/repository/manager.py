@@ -20,8 +20,8 @@ Storage structure is defined in:
 docs/draft/repository_storage_spec_v0.1.md
 """
 
+import json
 from pathlib import Path
-
 from src.models.question import Question
 
 
@@ -50,7 +50,40 @@ class RepositoryManager:
         - update index
         """
 
-        raise NotImplementedError()
+        question_dir = (
+
+                self.repository_root
+                / "questions"
+                / question.uuid
+        )
+
+        question_dir.mkdir(
+            parents=True,
+            exist_ok=True
+        )
+
+        question_file = (
+                question_dir
+                / "question.json"
+        )
+
+        with open(
+                question_file,
+                "w",
+                encoding="utf-8"
+        ) as f:
+            json.dump(
+
+                question.model_dump(),
+
+                f,
+
+                ensure_ascii=False,
+
+                indent=4,
+
+                default=str
+            )
 
     def load_question(
             self,
