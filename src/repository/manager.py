@@ -190,3 +190,62 @@ class RepositoryManager:
 
                 indent=4
             )
+
+    def search(
+            self,
+            uuid: str | None = None,
+            question_type: str | None = None
+    ) -> list[RepositoryIndex]:
+
+        """
+        Search repository index.
+        """
+
+        index_file = (
+
+                self.repository_root
+                / "index"
+                / "repository_index.json"
+        )
+
+        if not index_file.exists():
+            return []
+
+        with open(
+                index_file,
+                "r",
+                encoding="utf-8"
+        ) as f:
+
+            data = json.load(f)
+
+        results = [
+
+            RepositoryIndex(
+                **entry
+            )
+
+            for entry in data
+        ]
+
+        if uuid:
+            results = [
+
+                r
+                for r in results
+                if r.uuid == uuid
+            ]
+
+        if question_type:
+            results = [
+
+                r
+                for r in results
+                if (
+                        r.question_type
+                        ==
+                        question_type
+                )
+            ]
+
+        return results

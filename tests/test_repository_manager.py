@@ -103,3 +103,64 @@ def test_update_index(tmp_path):
     )
 
     assert index_file.exists()
+
+def test_search_by_uuid(tmp_path):
+
+    r = RepositoryManager(
+        repository_root=tmp_path
+    )
+
+    q = Question(
+
+        uuid="Q-a72f",
+
+        label="Q1",
+
+        question_type="single_choice",
+
+        points=2,
+
+        stem_tex="What is HCl?"
+    )
+
+    r.save_question(q)
+
+    results = r.search(
+        uuid="Q-a72f"
+    )
+
+    assert len(results) == 1
+
+    assert (
+        results[0].uuid
+        ==
+        "Q-a72f"
+    )
+
+
+def test_search_by_type(tmp_path):
+
+    r = RepositoryManager(
+        repository_root=tmp_path
+    )
+
+    q = Question(
+
+        uuid="Q-b234",
+
+        label="Q2",
+
+        question_type="single_choice",
+
+        points=2,
+
+        stem_tex="Test"
+    )
+
+    r.save_question(q)
+
+    results = r.search(
+        question_type="single_choice"
+    )
+
+    assert len(results) > 0
