@@ -37,3 +37,4 @@ tmp_compile/
 
 .DS_Store
 
+docs/.generated/
