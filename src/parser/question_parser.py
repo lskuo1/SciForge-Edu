@@ -17,7 +17,7 @@ simple \\question syntax.
 """
 
 import re
-
+from src.models.choice import Choice
 from src.models.question import Question
 
 
@@ -26,35 +26,32 @@ class QuestionParser:
     Parse Question objects from LaTeX.
     """
 
-    def parse(
-            self,
-            text: str
-    ) -> Question:
-
-        match = re.search(
-
+    def parse(self, text: str) -> Question:
+        question_match = re.search(
             r"\\question\s+(.*)",
-
             text
         )
 
-        if not match:
+        if not question_match:
+            raise ValueError("Question not found.")
 
-            raise ValueError(
-                "Question not found."
-            )
+        stem = question_match.group(1)
 
-        stem = match.group(1)
+        choice_matches = re.findall(
+            r"\\choice\s+(.*)",
+            text
+        )
+
+        choices = [
+            Choice(text_tex=c)
+            for c in choice_matches
+        ]
 
         return Question(
-
             uuid="TEMP",
-
             label="TEMP",
-
-            question_type="unknown",
-
+            question_type="single_choice",
             points=0,
-
-            stem_tex=stem
+            stem_tex=stem,
+            choices=choices
         )

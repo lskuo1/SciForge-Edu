@@ -35,3 +35,29 @@ def test_missing_question():
     except ValueError:
 
         assert True
+
+def test_parse_choices():
+
+    parser = QuestionParser()
+
+    q = parser.parse(
+
+        r"""
+        \question Which is acid?
+
+        \choice HCl
+        \choice NaOH
+        \choice CO2
+        """
+    )
+
+    assert len(
+        q.choices
+    ) == 3
+
+    assert (
+
+        q.choices[0].text_tex
+        ==
+        "HCl"
+    )
