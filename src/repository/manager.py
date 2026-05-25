@@ -45,9 +45,9 @@ class RepositoryManager:
         Save question into repository.
 
         TODO:
-        - create question folder
-        - serialize question
-        - update index
+
+        - update repository index
+        - create usage file
         """
 
         question_dir = (
@@ -94,4 +94,21 @@ class RepositoryManager:
         Load question from repository.
         """
 
-        raise NotImplementedError()
+        question_file = (
+
+                self.repository_root
+                / "questions"
+                / uuid
+                / "question.json"
+        )
+
+        with open(
+                question_file,
+                "r",
+                encoding="utf-8"
+        ) as f:
+            data = json.load(f)
+
+        return Question(
+            **data
+        )
