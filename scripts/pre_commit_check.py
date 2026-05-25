@@ -11,17 +11,24 @@ Responsibilities:
 - Block commit if checks fail
 """
 
+import os
 import subprocess
 import sys
-
+from pathlib import Path
 
 def run_pytest() -> bool:
+    project_root = Path(__file__).resolve().parent.parent
+
     result = subprocess.run(
-        ["pytest", "-q"]
+        ["python3", "-m", "pytest", "-q"],
+        cwd=project_root,
+        env={
+            **dict(__import__("os").environ),
+            "PYTHONPATH": str(project_root)
+        }
     )
 
     return result.returncode == 0
-
 
 def main():
     print("\nSciForge Pre-Commit Check\n")
