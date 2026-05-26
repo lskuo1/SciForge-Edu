@@ -2,27 +2,35 @@
 generate_snapshot.py
 
 Purpose:
-Generate project API snapshots for AI collaboration.
+Generate temporary API snapshots and detect
+whether the official snapshot is outdated.
 
 Responsibilities:
 
-- Generate API snapshot
-- Save generated snapshot
-- Update official snapshot only if changed
+- Generate API snapshot content
+- Save temporary snapshot
+- Compare with official snapshot
+- Return snapshot status
 
 Important notes:
 
 - API snapshot is the source of truth for AI context
-- Snapshot is automatically updated by pre-commit
-- Generated files should not always trigger commits
+- Temporary snapshots are stored in docs/.generated/
+- This module does NOT modify official snapshots
+- Commit decisions remain controlled by users
 """
 
 from pathlib import Path
 
 
-def generate_snapshot():
+def generate_snapshot() -> bool:
 
-    project_root = Path(__file__).resolve().parent.parent
+    project_root = (
+        Path(__file__)
+        .resolve()
+        .parent
+        .parent
+    )
 
     generated_dir = (
         project_root
@@ -62,15 +70,14 @@ Initial placeholder
     old_content = ""
 
     if official_file.exists():
-        old_content = official_file.read_text(
-            encoding="utf-8"
+
+        old_content = (
+            official_file.read_text(
+                encoding="utf-8"
+            )
         )
 
-    if old_content != content:
-        official_file.write_text(
-            content,
-            encoding="utf-8"
-        )
+    return old_content == content
 
 
 def main():
