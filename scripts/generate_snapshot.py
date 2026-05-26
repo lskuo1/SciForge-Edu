@@ -56,10 +56,10 @@ def generate_snapshot() -> bool:
 
     content = """# SciForge API Snapshot
 
-Snapshot version: 0.1
+Snapshot version: 0.2
 
 Status:
-Initial placeholder
+Temporary test
 """
 
     generated_file.write_text(
