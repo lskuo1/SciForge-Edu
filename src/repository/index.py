@@ -2,20 +2,22 @@
 index.py
 
 Purpose:
-Store repository search entries.
+Store searchable repository metadata projections.
 
 Responsibilities:
 
-- Support fast question search
-- Store metadata
-- Avoid loading complete questions
+- Support fast repository search
+- Store lightweight query metadata
+- Avoid loading complete Question objects
+- Support future indexing expansion
 
 Notes:
 
-Repository index does not contain
+RepositoryIndex is a query projection layer.
+
+RepositoryIndex does not contain
 complete question content.
 """
-
 
 from pydantic import BaseModel, Field
 
@@ -33,8 +35,16 @@ class RepositoryIndex(BaseModel):
 
     subject: str | None = None
 
+    chapter: str | None = None
+
     tags: list[str] = Field(
         default_factory=list
+    )
+
+    difficulty_level: int | None = Field(
+        default=None,
+        ge=1,
+        le=5
     )
 
     source_path: str

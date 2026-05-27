@@ -2,26 +2,28 @@
 manager.py
 
 Purpose:
-Manage repository operations.
+Manage repository persistence and index projection.
 
 Responsibilities:
 
 - Save questions
 - Load questions
 - Update repository index
-- Support future search functions
+- Project searchable metadata
+- Support future repository search
 
 Notes:
 
 RepositoryManager operates on storage layer.
 
-Storage structure is defined in:
+Repository structure is defined in:
 
 docs/draft/repository_storage_spec_v0.1.md
 """
 
 import json
 from pathlib import Path
+
 from src.models.question import Question
 from src.repository.index import RepositoryIndex
 
@@ -47,15 +49,13 @@ class RepositoryManager:
 
         TODO:
 
-        - update repository index
         - create usage file
         """
 
         question_dir = (
-
-                self.repository_root
-                / "questions"
-                / question.uuid
+            self.repository_root
+            / "questions"
+            / question.uuid
         )
 
         question_dir.mkdir(
@@ -64,8 +64,8 @@ class RepositoryManager:
         )
 
         question_file = (
-                question_dir
-                / "question.json"
+            question_dir
+            / "question.json"
         )
 
         with open(
@@ -73,21 +73,16 @@ class RepositoryManager:
                 "w",
                 encoding="utf-8"
         ) as f:
+
             json.dump(
-
                 question.model_dump(),
-
                 f,
-
                 ensure_ascii=False,
-
                 indent=4,
-
                 default=str
             )
-        self.update_index(
-            question
-        )
+
+        self.update_index(question)
 
     def load_question(
             self,
@@ -99,11 +94,10 @@ class RepositoryManager:
         """
 
         question_file = (
-
-                self.repository_root
-                / "questions"
-                / uuid
-                / "question.json"
+            self.repository_root
+            / "questions"
+            / uuid
+            / "question.json"
         )
 
         with open(
@@ -111,24 +105,23 @@ class RepositoryManager:
                 "r",
                 encoding="utf-8"
         ) as f:
+
             data = json.load(f)
 
-        return Question(
-            **data
-        )
+        return Question(**data)
 
     def update_index(
             self,
             question: Question
     ):
+
         """
-        Update repository index.
+        Update repository index projection.
         """
 
         index_dir = (
-
-                self.repository_root
-                / "index"
+            self.repository_root
+            / "index"
         )
 
         index_dir.mkdir(
@@ -137,19 +130,23 @@ class RepositoryManager:
         )
 
         index_file = (
-                index_dir
-                / "repository_index.json"
+            index_dir
+            / "repository_index.json"
         )
 
         entries = []
 
         if index_file.exists():
+
             with open(
                     index_file,
                     "r",
                     encoding="utf-8"
             ) as f:
+
                 entries = json.load(f)
+
+        analysis = question.analysis
 
         index_entry = RepositoryIndex(
 
@@ -159,13 +156,36 @@ class RepositoryManager:
 
             question_type=question.question_type,
 
+            subject=(
+                analysis.subject
+                if analysis
+                else None
+            ),
+
+            chapter=(
+                analysis.chapter
+                if analysis
+                else None
+            ),
+
+            tags=(
+                analysis.tags
+                if analysis
+                else []
+            ),
+
+            difficulty_level=(
+                analysis.difficulty_level
+                if analysis
+                else None
+            ),
+
             source_path=(
                 f"questions/{question.uuid}"
             )
         )
 
         entries = [
-
             e
             for e in entries
             if e["uuid"] != question.uuid
@@ -180,14 +200,11 @@ class RepositoryManager:
                 "w",
                 encoding="utf-8"
         ) as f:
+
             json.dump(
-
                 entries,
-
                 f,
-
                 ensure_ascii=False,
-
                 indent=4
             )
 
@@ -202,10 +219,9 @@ class RepositoryManager:
         """
 
         index_file = (
-
-                self.repository_root
-                / "index"
-                / "repository_index.json"
+            self.repository_root
+            / "index"
+            / "repository_index.json"
         )
 
         if not index_file.exists():
@@ -220,31 +236,27 @@ class RepositoryManager:
             data = json.load(f)
 
         results = [
-
-            RepositoryIndex(
-                **entry
-            )
-
+            RepositoryIndex(**entry)
             for entry in data
         ]
 
         if uuid:
-            results = [
 
+            results = [
                 r
                 for r in results
                 if r.uuid == uuid
             ]
 
         if question_type:
-            results = [
 
+            results = [
                 r
                 for r in results
                 if (
-                        r.question_type
-                        ==
-                        question_type
+                    r.question_type
+                    ==
+                    question_type
                 )
             ]
 
