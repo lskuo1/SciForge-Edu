@@ -2,21 +2,22 @@
 pre_commit_check.py
 
 Purpose:
-Run automated validation before git commit.
+Run automated pre-commit pipeline checks.
 
 Responsibilities:
 
 - Run pytest
-- Check API snapshot status
+- Synchronize API snapshots
+- Stage updated snapshot files
 - Show validation results
-- Block commit if checks fail
+- Block commit when critical checks fail
 
 Important notes:
 
 - Executed automatically by git hooks
 - Must run from project root
-- Does not modify repository files automatically
-- Commit decisions remain controlled by users
+- Snapshot files are treated as system metadata
+- Snapshot updates are automatic
 """
 
 import os
@@ -25,109 +26,69 @@ import sys
 from pathlib import Path
 
 
-def run_pytest() -> bool:
+def get_project_root() -> Path:
+    return Path(__file__).resolve().parent.parent
 
-    project_root = (
-        Path(__file__)
-        .resolve()
-        .parent
-        .parent
-    )
+
+def run_pytest() -> bool:
+    project_root = get_project_root()
 
     result = subprocess.run(
-        [
-            "python3",
-            "-m",
-            "pytest",
-            "-q"
-        ],
+        ["python3", "-m", "pytest", "-q"],
         cwd=project_root,
         env={
             **os.environ,
-            "PYTHONPATH": str(
-                project_root
-            )
+            "PYTHONPATH": str(project_root)
         }
     )
 
-    return (
-        result.returncode == 0
-    )
+    return result.returncode == 0
 
 
 def update_snapshot() -> bool:
-
-    project_root = (
-        Path(__file__)
-        .resolve()
-        .parent
-        .parent
-    )
+    project_root = get_project_root()
 
     result = subprocess.run(
-        [
-            "python3",
-            "scripts/generate_snapshot.py"
-        ],
+        ["python3", "scripts/generate_snapshot.py"],
         cwd=project_root
     )
 
-    return (
-        result.returncode == 0
+    return result.returncode == 2
+
+
+def stage_snapshot():
+    project_root = get_project_root()
+
+    subprocess.run(
+        ["git", "add", "docs/api_snapshot.md"],
+        cwd=project_root
     )
 
 
 def main():
+    print("\nSciForge Pre-Commit Check\n")
 
-    print(
-        "\nSciForge Pre-Commit Check\n"
-    )
-
-    tests_ok = run_pytest()
-
-    if not tests_ok:
-
-        print(
-            "\n✗ Tests failed"
-        )
+    if not run_pytest():
+        print("\n✗ Tests failed")
+        print("✗ Commit aborted")
 
         sys.exit(1)
 
-    snapshot_ok = (
-        update_snapshot()
-    )
+    print("\n✓ Tests passed")
 
-    if not snapshot_ok:
+    snapshot_updated = update_snapshot()
 
-        print(
-            "\n⚠ API snapshot outdated"
-        )
+    if snapshot_updated:
+        stage_snapshot()
 
-        print(
-            "\nSuggested action:"
-        )
+        print("\nℹ API snapshot updated")
+        print("✓ docs/api_snapshot.md staged")
 
-        print(
-            "git add docs/api_snapshot.md"
-        )
+        print("\nSuggested suffix:")
+        print("[snapshot updated]")
 
-        print(
-            "\nSuggested suffix:"
-        )
-
-        print(
-            "[snapshot updated]"
-        )
-
-        sys.exit(1)
-
-    print(
-        "\n✓ Tests passed"
-    )
-
-    print(
-        "✓ Snapshot up to date"
-    )
+    else:
+        print("✓ Snapshot up to date")
 
     sys.exit(0)
 

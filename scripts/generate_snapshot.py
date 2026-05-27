@@ -65,7 +65,7 @@ def main():
     snapshot_updated = generate_snapshot()
 
     if snapshot_updated:
-        print("✓ API snapshot updated")
+        sys.exit(2)
 
     sys.exit(0)
 
