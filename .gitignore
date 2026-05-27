@@ -36,5 +36,3 @@ tmp_compile/
 # system
 
 .DS_Store
-
-docs/.generated/

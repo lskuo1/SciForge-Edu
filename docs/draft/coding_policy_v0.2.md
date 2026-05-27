@@ -1,5 +1,5 @@
 # SciForge-Edu Coding Policy
-Version: v0.1
+Version: v0.2
 Status: Draft
 
 # Documentation Rules
@@ -48,6 +48,59 @@ class QuestionUsage(BaseModel):
 - Avoid excessive vertical spacing
 - Prefer readability over line minimization
 - Use blank lines to separate logical blocks
+- Keep short expressions on one line when readable
+
+Bad:
+
+project_root = (
+    Path(__file__)
+    .resolve()
+    .parent
+    .parent
+)
+
+Good:
+
+project_root = Path(__file__).resolve().parent.parent
+
+
+- Avoid unnecessary line wrapping
+
+Bad:
+
+snapshot_is_current = (
+    generate_snapshot()
+)
+
+Good:
+
+snapshot_is_current = generate_snapshot()
+
+
+- Keep chained calls on one line
+  when readability is acceptable
+
+
+- Avoid decorative spacing
+
+Bad:
+
+def main():
+
+
+
+    x = 1
+
+
+
+    y = 2
+
+Good:
+
+def main():
+    x = 1
+    y = 2
+
 
 Example:
 
@@ -96,18 +149,11 @@ test_parser_question_parser.py
 
 Avoid excessive inline comments.
 
-Prefer explaining:
-
-WHY
-
-instead of:
-
-WHAT
+Prefer explaining WHY instead of WHAT.
 
 Bad:
 
 i += 1
-
 
 # add one
 
@@ -118,3 +164,35 @@ statistics:list[AssessmentStatistics]
 # Statistics belong to observed exam
 # results rather than intrinsic question
 # properties.
+
+---
+
+# Snapshot Rules
+
+Purpose:
+
+API snapshots maintain consistent project context
+between developers and AI systems.
+
+Rules:
+
+- Snapshots are treated as system metadata
+- Snapshot updates are automatic
+- Snapshot files should always reflect current project state
+- Snapshot updates do not require manual decisions
+
+Commit behavior:
+
+When snapshot content changes during commit:
+
+1. Update docs/api_snapshot.md
+2. Stage docs/api_snapshot.md automatically
+3. Append:
+
+   [snapshot updated]
+
+4. Continue commit
+
+Notes:
+
+Snapshot files are not treated as user-authored content.
