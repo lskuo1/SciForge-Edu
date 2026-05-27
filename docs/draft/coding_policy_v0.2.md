@@ -88,9 +88,7 @@ Bad:
 def main():
 
 
-
     x = 1
-
 
 
     y = 2
@@ -123,7 +121,6 @@ def parse(
         self,
         text: str
 )->Question:
-
 
 
     question_match=re.search(

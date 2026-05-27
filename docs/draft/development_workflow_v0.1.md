@@ -1,5 +1,7 @@
 # Git Workflow Notes
 
+Status: Draft
+
 ## Git stages
 
 Git has three stages:

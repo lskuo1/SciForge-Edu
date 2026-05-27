@@ -1,4 +1,6 @@
 
+Status: Draft
+
 # Documentation Policy v1.1 Change Summary
 
 ## Export Artifact Policy

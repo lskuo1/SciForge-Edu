@@ -1,4 +1,6 @@
 
+Status: Draft
+
 # Architecture Map v1.1 Change Summary
 
 ## Export Layer Principle

@@ -1,5 +1,7 @@
 # SciForge-Edu API Snapshot Draft v1
 
+Status: Draft
+
 ## Project Overview
 
 SciForge-Edu

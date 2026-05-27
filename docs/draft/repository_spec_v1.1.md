@@ -1,4 +1,6 @@
 
+Status: Draft
+
 # Repository Spec v1.1 Change Summary
 
 ## Export Package Structure
