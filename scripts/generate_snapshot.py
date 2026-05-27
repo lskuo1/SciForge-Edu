@@ -28,7 +28,7 @@ def build_snapshot_content() -> str:
 Snapshot version: 0.1
 
 Status:
-Snapshot workflow test
+Snapshot auto-stage verification
 """
 
 
