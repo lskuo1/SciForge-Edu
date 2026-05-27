@@ -20,6 +20,8 @@ Important notes:
 - Commit decisions remain controlled by users
 """
 
+import sys
+
 from pathlib import Path
 
 
@@ -56,10 +58,10 @@ def generate_snapshot() -> bool:
 
     content = """# SciForge API Snapshot
 
-Snapshot version: 0.2
+Snapshot version: 0.1
 
 Status:
-Temporary test
+WARNING TEST
 """
 
     generated_file.write_text(
@@ -81,7 +83,12 @@ Temporary test
 
 
 def main():
-    generate_snapshot()
+    snapshot_is_current = generate_snapshot()
+
+    if snapshot_is_current:
+        sys.exit(0)
+
+    sys.exit(1)
 
 
 if __name__ == "__main__":
