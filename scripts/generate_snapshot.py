@@ -2,93 +2,74 @@
 generate_snapshot.py
 
 Purpose:
-Generate temporary API snapshots and detect
-whether the official snapshot is outdated.
+Generate and synchronize API snapshots for project context.
 
 Responsibilities:
 
-- Generate API snapshot content
-- Save temporary snapshot
-- Compare with official snapshot
-- Return snapshot status
+- Generate current API snapshot content
+- Compare snapshot status
+- Synchronize official snapshot files
 
 Important notes:
 
-- API snapshot is the source of truth for AI context
-- Temporary snapshots are stored in docs/.generated/
-- This module does NOT modify official snapshots
-- Commit decisions remain controlled by users
+- API snapshots represent current project state
+- Snapshot files are treated as system metadata
+- Snapshot updates are automatic
+- Official snapshots are stored in docs/api_snapshot.md
 """
 
 import sys
-
 from pathlib import Path
 
 
-def generate_snapshot() -> bool:
-
-    project_root = (
-        Path(__file__)
-        .resolve()
-        .parent
-        .parent
-    )
-
-    generated_dir = (
-        project_root
-        / "docs"
-        / ".generated"
-    )
-
-    generated_dir.mkdir(
-        parents=True,
-        exist_ok=True
-    )
-
-    generated_file = (
-        generated_dir
-        / "api_snapshot.md"
-    )
-
-    official_file = (
-        project_root
-        / "docs"
-        / "api_snapshot.md"
-    )
-
-    content = """# SciForge API Snapshot
+def build_snapshot_content() -> str:
+    return """# SciForge API Snapshot
 
 Snapshot version: 0.1
 
 Status:
-WARNING TEST
+Snapshot workflow test
 """
 
-    generated_file.write_text(
+
+def get_snapshot_path() -> Path:
+    project_root = Path(__file__).resolve().parent.parent
+
+    return project_root / "docs" / "api_snapshot.md"
+
+
+def generate_snapshot() -> bool:
+    snapshot_file = get_snapshot_path()
+
+    content = build_snapshot_content()
+
+    old_content = ""
+
+    if snapshot_file.exists():
+        old_content = snapshot_file.read_text(
+            encoding="utf-8"
+        )
+
+    if old_content == content:
+        return False
+
+    snapshot_file.write_text(
         content,
         encoding="utf-8"
     )
 
-    old_content = ""
-
-    if official_file.exists():
-
-        old_content = (
-            official_file.read_text(
-                encoding="utf-8"
-            )
-        )
-
-    return old_content == content
+    return True
 
 
 def main():
-    snapshot_is_current = generate_snapshot()
+    snapshot_updated = generate_snapshot()
 
-    if snapshot_is_current:
-        sys.exit(0)
+    if snapshot_updated:
+        print("✓ API snapshot updated")
 
-    sys.exit(1)
+        sys.exit(1)
+
+    sys.exit(0)
 
 
 if __name__ == "__main__":
