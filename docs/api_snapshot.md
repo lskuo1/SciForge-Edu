@@ -77,7 +77,7 @@ Record modification history.
 ├── uuid: str
 ├── label: str
 ├── question_type: str
-├── points: int
+├── points: float
 ├── stem_tex: str
 ├── choices: list
 ├── solution: src.models.solution.Solution | None
