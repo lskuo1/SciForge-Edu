@@ -49,7 +49,7 @@ class Question(BaseModel):
 
     question_type: str
 
-    points: int = Field(
+    points: float = Field(
         ge=0
     )
 
