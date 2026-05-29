@@ -97,6 +97,14 @@ Current snapshot behavior:
 - treated as system-state artifacts
 - intended for AI-readable runtime reconstruction
 
+Current governance observation:
+
+- snapshot synchronization is stable
+- snapshot auto-staging is stable
+- commit suffix automation remains unresolved
+- commit suffix automation is currently treated as a future enhancement
+- AI reconstruction should rely on api_snapshot.md itself rather than commit-message metadata
+
 Current snapshot source-of-truth:
 
 ```text
@@ -187,3 +195,21 @@ Current priority remains:
 validate repository workflow behavior
 before expanding semantic complexity
 ```
+
+# Current Governance Notes
+
+Current governance decision:
+
+```text
+[snapshot updated]
+```
+
+commit suffix automation is currently deferred.
+
+The repository currently treats:
+
+- docs/api_snapshot.md
+
+as the authoritative AI reconstruction signal.
+
+Commit-message metadata is considered secondary.
