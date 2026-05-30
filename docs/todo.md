@@ -6,11 +6,34 @@ Last Updated: 2026-05-29
 
 # Priority 1
 
-## Knowledge Point Architecture v0.1
+## Curriculum → Knowledge Point Mapping v0.1
 
 Status:
 
 Pending
+
+Purpose:
+
+Define how curriculum structures are transformed into Knowledge Points.
+
+Expected impact:
+
+- Knowledge Point Architecture
+- Repository Design
+- Curriculum Alignment
+- AI Knowledge Extraction
+
+Notes:
+
+Curriculum is the source of truth.
+
+Knowledge Points are derived artifacts.
+
+## Knowledge Point Architecture v0.1
+
+Status:
+
+Draft Established
 
 Purpose:
 
@@ -33,6 +56,11 @@ Must be designed before large-scale repository population.
 Status:
 
 Pending
+
+Dependency:
+
+- Curriculum → Knowledge Point Mapping v0.1
+- Knowledge Point Architecture v0.1
 
 Purpose:
 
