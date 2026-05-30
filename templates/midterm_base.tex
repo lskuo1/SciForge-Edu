@@ -1,0 +1,64 @@
+\documentclass[12pt, addpoints]{exam}
+
+% --- 控制解答顯示 (由 Python GUI 動態注入) ---
+[[ print_answers_config ]]
+
+% --- 紙張設定：B4 ---
+\usepackage[paperwidth=25.7cm, paperheight=36.4cm, top=2cm, bottom=2.2cm, left=2cm, right=2cm, columnsep=1cm]{geometry}
+
+% --- 中文字體設定 ---
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont[AutoFakeBold=true]{AR PL UKai TW}
+
+% --- 常用套件 ---
+\usepackage{siunitx, float, multicol, xcolor, amsmath, amssymb, graphicx, tabularx, multirow, tikz, enumitem, titlesec, booktabs, pgfplots, ulem}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta, calc, patterns, positioning}
+
+\raggedcolumns
+\setlength{\columnseprule}{0.4pt}
+\renewcommand{\choicelabel}{(\thechoice)}
+\renewcommand{\choiceshook}{\setlength{\leftmargin}{25pt}\setlength{\itemsep}{0pt}}
+
+\extrafootheight{2.0cm}
+\footer{}{\iflastpage{\vfill \centerline{\Large\textbf{--- 試題結束 ---}}}{\vfill \centerline{\Large\textbf{（尚有試題，請翻頁繼續作答）}}}}{第 \thepage\ 頁，共 \numpages 頁}
+\firstpageheader{}{}{第 \thepage\ 頁，共 \numpages 頁}
+\runningheader{[[ year_code ]][[ exam_title ]]}{[[ grade ]][[ course ]]}{第 \thepage\ 頁，共 \numpages 頁}
+
+\begin{document}
+
+% --- 試卷標頭 ---
+\begin{center}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{0.98\textwidth}{|*{6}{>{\centering\arraybackslash}X|}}
+        \hline
+        \multicolumn{6}{|c|}{\fontsize{18pt}{20pt}\selectfont \textbf{[[ school_name ]]\ [[ semester ]]\ [[ exam_title ]]}}\\
+        \hline\large
+        年級 & 科目 & 範圍 & 班級 & 座號 & 姓名 \\
+        \hline
+        [[ grade ]] & [[ course ]] & [[ test_range ]] & & & \\
+        \hline
+    \end{tabularx}
+\end{center}
+
+\vspace{0.8em}
+\noindent [[ full_instruction_content ]] % 這裡會注入完整的計分說明
+\vspace{0.5em}
+\hrule
+\vspace{1em}
+
+% --- 題目區塊 ---
+\ifprintanswers
+    \begin{questions}
+        [[ questions_content ]]
+    \end{questions}
+\else
+    \begin{multicols*}{2}
+    \begin{questions}
+        [[ questions_content ]]
+    \end{questions}
+    \end{multicols*}
+\fi
+
+\end{document}
