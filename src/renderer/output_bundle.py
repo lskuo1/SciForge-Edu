@@ -2,21 +2,23 @@
 Module Purpose
 --------------
 
-Define renderer output artifacts.
+Define export artifacts produced by
+the Renderer subsystem.
 
 Responsibilities
 ----------------
 
-- Represent generated output files
+- Represent exportable exam artifacts
 - Provide a stable contract between
-  rendering and compilation subsystems
+  rendering and export services
 
 Important Notes
 ---------------
 
-This module does not generate files.
+Export bundles must be self-contained.
 
-It only defines output artifact structures.
+Generated TeX files should remain
+compilable outside SciForge-Edu.
 """
 
 from dataclasses import dataclass
@@ -26,8 +28,12 @@ from pathlib import Path
 @dataclass(frozen=True)
 class OutputBundle:
     """
-    Renderer output artifact paths.
+    Self-contained exam export bundle.
     """
+
+    export_dir: Path
+
+    assets_dir: Path
 
     student_tex: Path
 

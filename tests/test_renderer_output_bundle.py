@@ -11,24 +11,23 @@ def test_output_bundle() -> None:
     """
 
     bundle = OutputBundle(
-        student_tex=Path("student.tex"),
-        teacher_tex=Path("teacher.tex"),
+        export_dir=Path("export"),
+        assets_dir=Path("export/assets"),
+        student_tex=Path("export/student.tex"),
+        teacher_tex=Path("export/teacher.tex"),
         answer_table_tex=Path(
-            "answer_table.tex"
+            "export/answer_table.tex"
         ),
+    )
+
+    assert bundle.export_dir == Path("export")
+
+    assert (
+        bundle.assets_dir
+        == Path("export/assets")
     )
 
     assert (
         bundle.student_tex
-        == Path("student.tex")
-    )
-
-    assert (
-        bundle.teacher_tex
-        == Path("teacher.tex")
-    )
-
-    assert (
-        bundle.answer_table_tex
-        == Path("answer_table.tex")
+        == Path("export/student.tex")
     )
