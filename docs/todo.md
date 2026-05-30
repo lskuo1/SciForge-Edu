@@ -6,6 +6,38 @@ Last Updated: 2026-05-29
 
 # Priority 1
 
+## Exam Generation MVP v0.1
+
+Status:
+
+Pending
+
+Purpose:
+
+Enable practical exam generation before large-scale repository architecture is completed.
+
+Deliverables:
+
+- Question storage
+- Image storage
+- Exam template system
+- Answer sheet generation
+- Solution generation
+- XeLaTeX PDF generation
+
+Success Criteria:
+
+Question Repository
+→ Template
+→ Exam.tex
+→ Answer.tex
+→ Solution.tex
+→ PDF
+
+Notes:
+
+Knowledge Points are optional metadata and must not block exam generation.
+
 ## Curriculum → Knowledge Point Mapping v0.1
 
 Status:
