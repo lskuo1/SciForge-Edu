@@ -93,6 +93,19 @@ Description:
 
 Core Question Object.
 
+### QuestionGroup
+
+```text
+├── group_stem_tex: str
+├── boxed_stem: bool
+├── questions: list
+└── extra: dict
+```
+
+Description:
+
+Shared-stimulus question group.
+
 ### Solution
 
 ```text
