@@ -1,7 +1,12 @@
 # Current System Audit v0.1
 
-Status: Baseline Established
+Status:
 
+Historical Snapshot
+
+Superseded By:
+
+current_system_audit_v0.2.md
 ## Purpose
 Record the actual implemented functionality inherited from the Gemini-based ExamGenerationSystem.
 
