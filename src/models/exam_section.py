@@ -62,6 +62,17 @@ class ExamSection:
             * self.question_count
         )
 
+    @property
+    def section_summary(self) -> str:
+        """
+        Human-readable section summary.
+        """
+
+        return (
+            f"每題{self.points_per_question}分，"
+            f"共{self.total_points}分"
+        )
+
     def add_question(
         self,
         instance: ExamQuestionInstance,

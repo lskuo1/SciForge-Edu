@@ -23,7 +23,6 @@ class SectionRenderer:
 
         return (
             "\\section*{"
-            f"每題{section.points_per_question}分，"
-            f"共{section.total_points}分"
+            f"{section.section_summary}"
             "}\n"
         )
