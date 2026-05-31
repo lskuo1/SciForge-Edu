@@ -300,6 +300,100 @@ values.
 
 ---
 
+# Automatic Section Generation
+
+## Purpose
+
+Sections should only be generated when they
+provide useful information to the reader.
+
+The system should avoid unnecessary section
+headers when all questions share the same score.
+
+---
+
+## Rule
+
+If all questions have the same effective score:
+
+* no sections are generated
+* questions are rendered directly
+
+Example:
+
+```
+Q1 2 points
+Q2 2 points
+Q3 2 points
+```
+
+Output:
+
+```
+\question ...
+\question ...
+\question ...
+```
+
+---
+
+If multiple score groups exist:
+
+* sections are generated automatically
+* questions are grouped by score
+
+Example:
+
+```
+Q1 2 points
+Q2 2 points
+Q3 4 points
+Q4 4 points
+```
+
+Output:
+
+```
+\section*{每題2分，共4分}
+
+\question ...
+
+\question ...
+
+\section*{每題4分，共8分}
+
+\question ...
+
+\question ...
+```
+
+---
+
+## Design Rationale
+
+When all questions share the same score,
+section headers provide little value and add
+visual clutter.
+
+Automatic section generation is therefore
+triggered only when multiple score groups
+exist.
+
+This preserves compatibility with the legacy
+workflow while supporting more advanced
+composition scenarios.
+
+---
+
+## Renderer Behavior
+
+Renderers shall determine automatically
+whether section generation is required.
+
+Users should not need to manually create
+sections for ordinary examinations.
+---
+
 
 
 # Legacy System Compatibility
