@@ -36,3 +36,8 @@ tmp_compile/
 # system
 
 .DS_Store
+
+
+# Build outputs
+build/*
+!build/.gitkeep
