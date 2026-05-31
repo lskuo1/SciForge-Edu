@@ -220,3 +220,30 @@ Priority 3
 Priority 4
 
 - Knowledge point integration
+
+---
+
+## SciForge Improvement: Automatic Section Summary
+
+Compared with the legacy system,
+SciForge-Edu will automatically generate:
+
+* question range
+* question count
+* points per question
+* section score
+
+for every section.
+
+Example:
+
+```
+1 至 10 題，每題 2 分，共 20 分
+```
+
+This reduces manual maintenance and prevents
+common scoring errors in examination papers.
+
+The generated summary is intended to be edited
+freely after export if teachers require custom
+wording.
