@@ -9,6 +9,7 @@ Responsibilities
 
 - Render individual questions
 - Render collections of questions
+- Render exam sections
 
 Important Notes
 ---------------
@@ -20,7 +21,13 @@ Template composition belongs to
 higher-level renderer services.
 """
 
+from src.models.exam_section import (
+    ExamSection,
+)
 from src.models.question import Question
+from src.renderer.section_renderer import (
+    SectionRenderer,
+)
 
 
 class ExamRenderer:
@@ -94,4 +101,51 @@ class ExamRenderer:
         return "\n\n".join(
             self.render_question(q)
             for q in questions
+        )
+
+    def render_section(
+        self,
+        section: ExamSection,
+    ) -> str:
+        """
+        Render an ExamSection.
+        """
+
+        section_renderer = (
+            SectionRenderer()
+        )
+
+        lines = [
+            section_renderer.render(
+                section
+            )
+        ]
+
+        for instance in (
+            section.question_instances
+        ):
+
+            lines.append(
+                self.render_question(
+                    instance.question
+                )
+            )
+
+        return "\n\n".join(
+            lines
+        )
+
+    def render_sections(
+        self,
+        sections: list[ExamSection],
+    ) -> str:
+        """
+        Render multiple sections.
+        """
+
+        return "\n\n".join(
+            self.render_section(
+                section
+            )
+            for section in sections
         )
