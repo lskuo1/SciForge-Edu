@@ -35,11 +35,34 @@ class ExamSection:
 
     title: str
 
-    points_per_question: int
+    points_per_question: int | float
 
     question_instances: list[
         ExamQuestionInstance
     ] = field(default_factory=list)
+
+    @staticmethod
+    def _format_score(
+        score: int | float,
+    ) -> str:
+        """
+        Format score for display.
+
+        Examples
+        --------
+
+        2.0 -> "2"
+
+        2.5 -> "2.5"
+        """
+
+        if float(score).is_integer():
+
+            return str(
+                int(score)
+            )
+
+        return str(score)
 
     @property
     def question_count(self) -> int:
@@ -52,7 +75,9 @@ class ExamSection:
         )
 
     @property
-    def total_points(self) -> int:
+    def total_points(
+        self,
+    ) -> int | float:
         """
         Total section score.
         """
@@ -68,9 +93,21 @@ class ExamSection:
         Human-readable section summary.
         """
 
+        points = (
+            self._format_score(
+                self.points_per_question
+            )
+        )
+
+        total = (
+            self._format_score(
+                self.total_points
+            )
+        )
+
         return (
-            f"每題{self.points_per_question}分，"
-            f"共{self.total_points}分"
+            f"每題{points}分，"
+            f"共{total}分"
         )
 
     def add_question(

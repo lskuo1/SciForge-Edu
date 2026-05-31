@@ -66,6 +66,7 @@ def test_exam_section_total_points():
 
     assert section.total_points == 4
 
+
 def test_exam_section_summary():
 
     question = Question(
@@ -100,4 +101,28 @@ def test_exam_section_summary():
     assert (
         section.section_summary
         == "每題2分，共4分"
+    )
+
+
+def test_format_score():
+
+    assert (
+        ExamSection._format_score(
+            2.0
+        )
+        == "2"
+    )
+
+    assert (
+        ExamSection._format_score(
+            2.5
+        )
+        == "2.5"
+    )
+
+    assert (
+        ExamSection._format_score(
+            4
+        )
+        == "4"
     )
