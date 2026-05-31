@@ -78,3 +78,76 @@ def test_render_teacher_tex():
     )
 
     assert "\\printanswers" in tex
+
+def test_render_without_sections():
+
+    renderer = ExamPackageRenderer(
+        TEMPLATE
+    )
+
+    tex = renderer.render_student_tex(
+        questions=[
+            Question(
+                uuid="Q1",
+                label="Q1",
+                question_type="single_choice",
+                points=2,
+                stem_tex="Q1",
+            ),
+            Question(
+                uuid="Q2",
+                label="Q2",
+                question_type="single_choice",
+                points=2,
+                stem_tex="Q2",
+            ),
+        ],
+        metadata={
+            "school_name":
+                "SciForge High",
+        },
+    )
+
+    assert "\\section*" not in tex
+
+
+def test_render_with_sections():
+
+    renderer = ExamPackageRenderer(
+        TEMPLATE
+    )
+
+    tex = renderer.render_student_tex(
+        questions=[
+            Question(
+                uuid="Q1",
+                label="Q1",
+                question_type="single_choice",
+                points=2,
+                stem_tex="Q1",
+            ),
+            Question(
+                uuid="Q2",
+                label="Q2",
+                question_type="single_choice",
+                points=4,
+                stem_tex="Q2",
+            ),
+        ],
+        metadata={
+            "school_name":
+                "SciForge High",
+        },
+    )
+
+    assert "\\section*" in tex
+
+    assert (
+        "每題2分"
+        in tex
+    )
+
+    assert (
+        "每題4分"
+        in tex
+    )

@@ -13,8 +13,9 @@ Responsibilities
 - Inject rendered questions
 """
 
-from pathlib import Path
-
+from src.composer.score_grouping import (
+    group_by_points,
+)
 from src.models.question import Question
 from src.renderer.exam_renderer import (
     ExamRenderer,
@@ -67,12 +68,45 @@ class ExamPackageRenderer:
         print_answers: bool,
     ) -> str:
 
-        content = (
-            self._question_renderer
-            .render_questions(
-                questions
+        unique_points = {
+            q.points
+            for q in questions
+        }
+
+        if len(unique_points) <= 1:
+
+            content = (
+                self._question_renderer
+                .render_questions(
+                    questions
+                )
             )
-        )
+
+        else:
+
+            from src.models.exam_question_instance import (
+                ExamQuestionInstance,
+            )
+
+            instances = [
+                ExamQuestionInstance(
+                    question=q,
+                )
+                for q in questions
+            ]
+
+            sections = (
+                group_by_points(
+                    instances
+                )
+            )
+
+            content = (
+                self._question_renderer
+                .render_sections(
+                    sections
+                )
+            )
 
         result = self._template
 
@@ -113,4 +147,3 @@ class ExamPackageRenderer:
         )
 
         return result
-    
