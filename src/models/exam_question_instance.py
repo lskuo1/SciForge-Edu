@@ -31,6 +31,7 @@ class ExamQuestionInstance:
     assigned_points: int | None = None
 
     display_order: int = 0
+    choice_order: list[int] | None = None
 
     included: bool = True
 

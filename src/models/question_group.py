@@ -28,7 +28,7 @@ class QuestionGroup(BaseModel):
     Shared-stimulus question group.
     """
 
-    group_stem_tex: str
+    group_stem_tex: str | None = None
 
     boxed_stem: bool = False
 

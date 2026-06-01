@@ -68,6 +68,7 @@ class Question(BaseModel):
     )
 
     source: Source | None = None
+    source_path: str | None = None
 
     current_version: int = 1
 

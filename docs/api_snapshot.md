@@ -84,6 +84,7 @@ Record modification history.
 ├── analysis: src.models.analysis.Analysis | None
 ├── statistics: list
 ├── source: src.models.source.Source | None
+├── source_path: str | None
 ├── current_version: int
 ├── history: list
 └── extra: dict
@@ -96,7 +97,7 @@ Core Question Object.
 ### QuestionGroup
 
 ```text
-├── group_stem_tex: str
+├── group_stem_tex: str | None
 ├── boxed_stem: bool
 ├── questions: list
 └── extra: dict
