@@ -2,7 +2,7 @@
 question_parser.py
 
 Purpose:
-Parse LaTeX question content.
+Parse SciForge-Edu Question Source content.
 
 Responsibilities:
 
@@ -12,6 +12,7 @@ Responsibilities:
 - Parse CorrectChoice markers
 - Parse legacy solution syntax
 - Parse solution environment
+- Preserve source file information
 
 Parser Philosophy
 -----------------
@@ -33,9 +34,26 @@ The parser supports both:
 
 to facilitate migration of older
 question banks.
+
+Source Tracking
+---------------
+
+The parser may preserve the originating
+source file path.
+
+Source paths are used for:
+
+- resource resolution
+- image packaging
+- renderer namespace generation
+
+Parser support for QuestionGroup and
+GroupStem is outside the scope of
+version 1.1.
 """
 
 import re
+from pathlib import Path
 
 from src.models.choice import Choice
 from src.models.provenance import Provenance
@@ -51,6 +69,7 @@ class QuestionParser:
     def parse(
         self,
         text: str,
+        source_path: str | None = None,
     ) -> Question:
         """
         Legacy API.
@@ -59,7 +78,8 @@ class QuestionParser:
         """
 
         questions = self.parse_questions(
-            text
+            text,
+            source_path=source_path,
         )
 
         if not questions:
@@ -72,6 +92,7 @@ class QuestionParser:
     def parse_questions(
         self,
         text: str,
+        source_path: str | None = None,
     ) -> list[Question]:
         """
         Parse multiple questions from LaTeX.
@@ -131,6 +152,7 @@ class QuestionParser:
                 stem_tex=stem,
                 choices=choices,
                 solution=solution,
+                source_path=source_path,
             )
 
             questions.append(
@@ -139,15 +161,30 @@ class QuestionParser:
 
         return questions
 
+    def parse_file(
+        self,
+        path: str | Path,
+    ) -> list[Question]:
+        """
+        Parse questions from a file and
+        preserve source path information.
+        """
+
+        path = Path(path)
+
+        text = path.read_text(
+            encoding="utf-8"
+        )
+
+        return self.parse_questions(
+            text,
+            source_path=str(path),
+        )
+
     def _extract_choices(
         self,
         block: str,
     ) -> list[Choice]:
-        """
-        Parse both legacy and environment-based
-        choice formats.
-        """
-
         choices_match = re.search(
             r"\\begin\{choices\}"
             r"(.*?)"
@@ -178,10 +215,6 @@ class QuestionParser:
         self,
         choices_block: str,
     ) -> list[Choice]:
-        """
-        Parse choices environment.
-        """
-
         pattern = re.compile(
             r"\\(CorrectChoice|choice)"
             r"\s+(.*?)(?="
@@ -206,8 +239,7 @@ class QuestionParser:
                 Choice(
                     text_tex=text,
                     is_correct=(
-                        kind
-                        == "CorrectChoice"
+                        kind == "CorrectChoice"
                     ),
                 )
             )
@@ -218,10 +250,6 @@ class QuestionParser:
         self,
         block: str,
     ) -> Solution | None:
-        """
-        Parse both legacy and environment-based
-        solution formats.
-        """
 
         solution_match = re.search(
             r"\\begin\{solution\}"
@@ -253,9 +281,6 @@ class QuestionParser:
         self,
         content: str,
     ) -> Solution:
-        """
-        Create Solution object.
-        """
 
         return Solution(
             content_tex=content.strip(),
