@@ -59,6 +59,9 @@ from src.models.choice import Choice
 from src.models.provenance import Provenance
 from src.models.question import Question
 from src.models.solution import Solution
+from src.utils.question_id import (
+    generate_question_id,
+)
 
 
 class QuestionParser:
@@ -144,9 +147,15 @@ class QuestionParser:
                 block
             )
 
+            question_id = generate_question_id(
+                question_type="single_choice",
+                stem_tex=stem,
+                choices=choices,
+            )
+
             question = Question(
-                uuid=f"TEMP-{index}",
-                label=f"TEMP-{index}",
+                uuid=question_id,
+                label=f"Q{index}",
                 question_type="single_choice",
                 points=0,
                 stem_tex=stem,
