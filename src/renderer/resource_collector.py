@@ -39,6 +39,8 @@ class ResourceReference:
     Resolved resource reference.
     """
 
+    question_uuid: str
+
     original_path: str
 
     resolved_path: Path
@@ -56,7 +58,9 @@ class ResourceCollector:
         question: Question,
     ) -> list[ResourceReference]:
 
-        resources: list[ResourceReference] = []
+        resources: list[
+            ResourceReference
+        ] = []
 
         if not question.source_path:
             return resources
@@ -100,6 +104,7 @@ class ResourceCollector:
 
                 resources.append(
                     ResourceReference(
+                        question_uuid=question.uuid,
                         original_path=relative_path,
                         resolved_path=resolved,
                         exists=resolved.exists(),

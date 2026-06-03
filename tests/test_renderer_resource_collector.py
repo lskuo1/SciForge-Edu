@@ -46,6 +46,11 @@ def test_collect_same_directory_resource(
     assert len(resources) == 1
 
     assert (
+        resources[0].question_uuid
+        == "Q1"
+    )
+
+    assert (
         resources[0].resolved_path
         == image.resolve()
     )
@@ -97,6 +102,11 @@ def test_collect_subdirectory_resource(
     )
 
     assert len(resources) == 1
+
+    assert (
+        resources[0].question_uuid
+        == "Q1"
+    )
 
     assert (
         resources[0].resolved_path
@@ -157,6 +167,11 @@ def test_collect_parent_directory_resource(
     assert len(resources) == 1
 
     assert (
+        resources[0].question_uuid
+        == "Q1"
+    )
+
+    assert (
         resources[0].resolved_path
         == image.resolve()
     )
@@ -190,6 +205,11 @@ def test_missing_resource(
     )
 
     assert len(resources) == 1
+
+    assert (
+        resources[0].question_uuid
+        == "Q1"
+    )
 
     assert (
         resources[0].exists
@@ -241,6 +261,11 @@ def test_collect_resource_from_choice(
 
     assert len(resources) == 1
 
+    assert (
+        resources[0].question_uuid
+        == "Q1"
+    )
+
     assert resources[0].exists
 
 
@@ -282,5 +307,10 @@ def test_collect_includegraphics_with_options(
     )
 
     assert len(resources) == 1
+
+    assert (
+        resources[0].question_uuid
+        == "Q1"
+    )
 
     assert resources[0].exists
