@@ -2,7 +2,7 @@
 
 Status
 
-Planned
+Completed
 
 ---
 
@@ -20,11 +20,11 @@ This sprint focuses on repository usability rather than introducing new function
 
 ---
 
-# Candidate Deliverables
+# Completed Deliverables
 
-* Repair pyproject.toml packaging configuration.
-* Repair examples/sample_repository_workflow.py.
-* Update README.md to reflect the current repository state.
+* **Repaired pyproject.toml packaging configuration**: Restored standard PEP 621 metadata tags and setuptools backend mapping, enabling clean `pip install` resolution.
+* **Repaired examples/sample_repository_workflow.py**: Aligned deprecated model fields (Choice, Solution, Provenance, Question, Source) with the current Pydantic schemas and restricted database index queries to supported parameters.
+* **Updated README.md**: Revised project status flags to reflect validated reality, added onboarding script execution instructions, and introduced the Engineering Governance section.
 
 ---
 
@@ -47,32 +47,28 @@ Engineering priorities should follow the audit findings.
 
 ---
 
-# Expected Evidence
+# Recorded Evidence
 
-Successful execution of:
-
-```bash
-pip install -e .[dev]
-```
-
-Successful execution of:
-
-```bash
-python examples/sample_repository_workflow.py
-```
-
-Updated onboarding documentation.
+* **Package Setup**:
+  - Execution of `pip install -e .[dev]` completed successfully and built the `sciforge-edu` packaging structure.
+* **Test Suite Verification**:
+  - Execution of `pytest` completed successfully with **100 passing tests**.
+* **Walkthrough Script Execution**:
+  - Execution of `python examples/sample_repository_workflow.py` successfully saved questions, projected index entries, executed queries, and passed all roundtrip consistency assertions.
+* **Onboarding Documentation**:
+  - README.md updated with installation commands, workflow walkthrough guides, and an Engineering Governance overview.
 
 ---
 
-# Expected Lessons
+# Lessons Learned
 
-To be completed after the sprint finishes.
+* **Validation-first Documentation Pipeline**: Updating documentation only *after* implementation validation ensures that README changes accurately describe runtime behavior, preventing incorrect status reporting.
+* **Strict Onboarding Gatekeeping**: Developer example scripts serve as executable specifications; keeping them in sync with model changes via unit-test assertions or manual validation keeps onboarding friction extremely low.
+* **Git-Ignored Package Directories**: Discovered that a generic rule in `.gitignore` (`workspace/`) was matching and ignoring `src/workspace/`, a critical package directory. Engineering workflows must verify tracked status of source directories to prevent partial clones.
 
 ---
 
 # Next Step
 
-Perform architecture review before implementation begins.
+Transition to Sprint 003 planning to address outstanding architectural and feature priorities.
 
-Implementation work should follow documented engineering priorities rather than ad hoc modifications.

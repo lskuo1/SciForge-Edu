@@ -107,6 +107,8 @@ analysis = Analysis(
     ],
 
     provenance=Provenance(
+        source_type="system",
+        source_name="workflow_example",
         created_by="sample_workflow",
         confidence=0.95
     )
@@ -120,23 +122,23 @@ analysis = Analysis(
 choices = [
 
     Choice(
-        key="A",
-        content="The object stops immediately."
+        text_tex="The object stops immediately.",
+        is_correct=False
     ),
 
     Choice(
-        key="B",
-        content="The object continues at constant velocity."
+        text_tex="The object continues at constant velocity.",
+        is_correct=True
     ),
 
     Choice(
-        key="C",
-        content="The object accelerates upward."
+        text_tex="The object accelerates upward.",
+        is_correct=False
     ),
 
     Choice(
-        key="D",
-        content="The object gains mass."
+        text_tex="The object gains mass.",
+        is_correct=False
     )
 ]
 
@@ -147,13 +149,20 @@ choices = [
 
 solution = Solution(
 
-    answer="B",
-
-    explanation=(
+    content_tex=(
         "According to Newton's first law, "
         "an object continues at constant velocity "
         "unless acted upon by a net external force."
-    )
+    ),
+
+    provenance=Provenance(
+        source_type="system",
+        source_name="workflow_example",
+        created_by="sample_workflow",
+        confidence=0.95
+    ),
+
+    is_verified=True
 )
 
 
@@ -163,9 +172,13 @@ solution = Solution(
 
 source = Source(
 
-    source_type="textbook",
+    file_path="examples/sample_repository_workflow.py",
 
-    source_name="SciForge Physics Prototype"
+    raw_tex=(
+        "A hockey puck slides on frictionless ice. "
+        "After being struck once, what happens "
+        "if no additional force acts on it?"
+    )
 )
 
 
@@ -186,7 +199,9 @@ question = Question(
 
     question_type="multiple_choice",
 
-    content=(
+    points=5.0,
+
+    stem_tex=(
         "A hockey puck slides on frictionless ice. "
         "After being struck once, what happens "
         "if no additional force acts on it?"
@@ -281,36 +296,23 @@ print(
 # - explicit
 # - metadata-oriented
 
-print("\n=== Query: subject='physics' ===\n")
+print("\n=== Query: question_type='multiple_choice' ===\n")
 
-physics_results = manager.search(
-    subject="physics"
+results = manager.search(
+    question_type="multiple_choice"
 )
 
-for result in physics_results:
+for result in results:
     print(result)
 
 
-print("\n=== Query: tags=['force'] ===\n")
+print("\n=== Query: uuid='physics-newton-001' ===\n")
 
-force_results = manager.search(
-    tags=["force"]
+results = manager.search(
+    uuid="physics-newton-001"
 )
 
-for result in force_results:
-    print(result)
-
-
-print(
-    "\n=== Query: "
-    "tags=['force', 'newton'] ===\n"
-)
-
-combined_results = manager.search(
-    tags=["force", "newton"]
-)
-
-for result in combined_results:
+for result in results:
     print(result)
 
 

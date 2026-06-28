@@ -1,4 +1,4 @@
- # SciForge-Edu
+# SciForge-Edu
 
 Educational Question Asset Management
 and Exam Generation System
@@ -15,11 +15,20 @@ Basic workflow:
 2. Create virtual environment
 3. Install dependencies
 4. Run tests
+5. Run example walkthroughs
 
 ```bash
+# Setup and install packages
 pip install -e .[dev]
 
+# Execute test suite
 pytest
+
+# Run repository manager walkthrough
+python examples/sample_repository_workflow.py
+
+# Run end-to-end exam generation and TeX export walkthrough
+python examples/generate_exam.py
 ```
 
 ---
@@ -28,15 +37,24 @@ pytest
 
 Current stage:
 
-Specification Draft Phase
+Prototype/Pre-MVP Phase
 
 Status:
 
-- Architecture: in progress
-- Documentation: in progress
-- Core engine: not implemented
-- GUI: not implemented
-- AI features: not implemented
+- Architecture: Core design established (Parser -> Models -> Repository -> Renderer -> Export)
+- Documentation: Core walkthroughs documented; detailed specification drafts in progress
+- Core Engine: Implemented & Validated (Core schemas, parser, local database, reference rewriter, and text renderer are operational; validated in Sprint 002)
+- GUI: Planned (Not implemented; package placeholders only)
+- AI Features: Planned (Not implemented; conceptual specs only)
+
+---
+
+## Engineering Governance
+
+The repository contains engineering documentation tracking developmental work and project status:
+
+- **Repository Audits** (`docs/audits/`): Reports documenting observations, architecture mismatches, and compliance audits (e.g. Sprint 001 audit).
+- **Sprint Plans** (`docs/sprints/`): Documents outlining sprint goals, deliverables, and implementation schedules (e.g. Sprint 002 planning).
 
 ---
 
@@ -128,15 +146,18 @@ Never reverse this order.
 
 ## Current Phase
 
-Phase 1:
+Phase 1: Core Data Engine & Basic Compilers
 
-Core Data Engine
+Implemented & Validated:
+- Question, Choice, Solution, Provenance, and Source Pydantic models
+- Local repository manager and JSON index projections (validated via workflow roundtrip)
+- Exam composer (Score grouping primitives)
+- Renderer pipeline (Namespace assigner, reference rewriter, and template manager)
+- Workspace exporter (student/teacher TeX documents export)
 
 Planned:
-
-- Question Object
-- Choice
-- Solution
-- Provenance
-- Repository
+- LaTeX PDF compilation service
+- Sandbox compilation environment
+- QuestionGroup source parsing and rendering
+- UI/GUI exam builder and repository browser
 
