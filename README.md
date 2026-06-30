@@ -55,6 +55,42 @@ The repository contains engineering documentation tracking developmental work an
 
 - **Repository Audits** (`docs/audits/`): Reports documenting observations, architecture mismatches, and compliance audits (e.g. Sprint 001 audit).
 - **Sprint Plans** (`docs/sprints/`): Documents outlining sprint goals, deliverables, and implementation schedules (e.g. Sprint 002 planning).
+- **Change Governance** (`docs/governance/engineering_change_governance_policy.md`): Defines change classification tiers (Class A vs. Class B) and canonical Testing Impact Analysis (TIA-1 to TIA-5) required for behavior changes.
+- **Templates** (`docs/templates/`): Standardization templates (e.g., `implementation_plan_template.md`) used to structure engineering change contracts.
+
+### Change Classification Model
+
+Every repository change must be triaged into one of two tiers:
+
+* **Class A: Behavior-Preserving Change**
+  * **When to use**: Applied when the externally observable behavior of the repository remains completely unchanged.
+  * **Examples**: Documentation, code comments, formatting, typo corrections, or internal refactoring with zero contract or logic output changes.
+  * **Requirement**: Record a brief engineering rationale explaining why behavior is preserved.
+* **Class B: Behavior-Changing Change**
+  * **When to use**: Applied when the externally observable behavior of the repository may change.
+  * **Examples**: Public API changes, parser regex behavior changes, repository workflow modifications, data model schema changes, user-visible output format changes, and semantic logic adjustments.
+  * **Requirement**: Perform a complete, canonical Testing Impact Analysis (TIA) before implementation.
+
+### Testing Impact Analysis (TIA)
+
+The purpose of Testing Impact Analysis (TIA) is to ensure that every behavior-changing (Class B) modification is explicitly analyzed from a testing perspective prior to implementation. By forcing contributors to explicitly map new behaviors to test coverage, we avoid untested code paths, prevent silent regressions, and make engineering decisions regarding tests explicit rather than implicit.
+
+All Class B changes must answer the five canonical TIA questions:
+1. **TIA-1**: What behavior is changing?
+2. **TIA-2**: Which existing tests currently verify this behavior?
+3. **TIA-3**: Are the existing tests sufficient?
+4. **TIA-4**: If not, why are they insufficient?
+5. **TIA-5**: **Engineering Decision** (Choose exactly one: *Existing tests are sufficient*, *Existing tests require modification*, *New tests are required*, or *No applicable tests exist*) with an explicit engineering rationale.
+
+### Contributor Governance Workflow
+
+Every repository contribution must progress through the following sequential stages:
+
+1. **Sprint Planning**: The sprint goals, scope, and deliverables are defined in a Sprint Plan document (within `docs/sprints/`).
+2. **Execution Contract (Implementation Plan)**: Before writing code, the contributor creates an Implementation Plan using the template in `docs/templates/implementation_plan_template.md`. For each task, the contributor triages the change class (Class A or Class B) and documents the corresponding rationale or TIA answers. This document is reviewed and approved as the Execution Contract.
+3. **Implementation**: The contributor writes the code and tests in strict compliance with the approved Execution Contract. If deviations are necessary, coding stops, and the contract must be revised and re-approved before proceeding.
+4. **Verification**: Independent or automated validation (such as running the test suite via `pytest` and auditing document consistency) is performed to confirm correctness and ensure no regression has occurred.
+5. **Retrospective**: After implementation is verified and merged, a retrospective is conducted to capture learnings and address any process improvements or gaps.
 
 ---
 

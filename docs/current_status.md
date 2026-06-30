@@ -30,6 +30,7 @@ The following architectural components are currently considered stable:
 - Structural repository query support
 - Snapshot synchronization workflow
 - Draft RFC governance structure
+- Engineering Change Governance framework (Class A/Class B change classification & TIA-1 to TIA-5 workflows)
 
 Current stable repository projection flow:
 
@@ -60,7 +61,6 @@ Current development focus areas:
 - statistical metadata separation
 - repository workflow validation
 - AI handoff continuity
-- architecture governance refinement
 
 Current priority is validating real repository workflow behavior before expanding semantic capabilities.
 

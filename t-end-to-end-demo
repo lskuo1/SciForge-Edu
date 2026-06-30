@@ -1,0 +1,354 @@
+[1mdiff --git a/CHANGELOG.md b/CHANGELOG.md[m
+[1mindex 2189fb2..7923ebc 100644[m
+[1m--- a/CHANGELOG.md[m
+[1m+++ b/CHANGELOG.md[m
+[36m@@ -37,6 +37,10 @@[m [mNotes:[m
+ ## Unreleased[m
+ [m
+ Added:[m
+[32m+[m[32m- **Sprint 003 (Engineering Change Governance)**:[m
+[32m+[m[32m  - Created Engineering Change Governance Policy (`docs/governance/engineering_change_governance_policy.md`) defining Class A (behavior-preserving) and Class B (behavior-changing) change classifications.[m
+[32m+[m[32m  - Created standardized execution/planning template (`docs/templates/implementation_plan_template.md`) mandating the Testing Impact Analysis (TIA-1 to TIA-5) workflow.[m
+[32m+[m[32m  - Integrated governance references in project entry point (`README.md`) and status tracking (`docs/current_status.md`).[m
+ - Add source model[m
+ - Add module purpose documentation[m
+ - Add change policy draft[m
+[1mdiff --git a/README.md b/README.md[m
+[1mindex e597464..84e6f24 100644[m
+[1m--- a/README.md[m
+[1m+++ b/README.md[m
+[36m@@ -55,6 +55,42 @@[m [mThe repository contains engineering documentation tracking developmental work an[m
+ [m
+ - **Repository Audits** (`docs/audits/`): Reports documenting observations, architecture mismatches, and compliance audits (e.g. Sprint 001 audit).[m
+ - **Sprint Plans** (`docs/sprints/`): Documents outlining sprint goals, deliverables, and implementation schedules (e.g. Sprint 002 planning).[m
+[32m+[m[32m- **Change Governance** (`docs/governance/engineering_change_governance_policy.md`): Defines change classification tiers (Class A vs. Class B) and canonical Testing Impact Analysis (TIA-1 to TIA-5) required for behavior changes.[m
+[32m+[m[32m- **Templates** (`docs/templates/`): Standardization templates (e.g., `implementation_plan_template.md`) used to structure engineering change contracts.[m
+[32m+[m
+[32m+[m[32m### Change Classification Model[m
+[32m+[m
+[32m+[m[32mEvery repository change must be triaged into one of two tiers:[m
+[32m+[m
+[32m+[m[32m* **Class A: Behavior-Preserving Change**[m
+[32m+[m[32m  * **When to use**: Applied when the externally observable behavior of the repository remains completely unchanged.[m
+[32m+[m[32m  * **Examples**: Documentation, code comments, formatting, typo corrections, or internal refactoring with zero contract or logic output changes.[m
+[32m+[m[32m  * **Requirement**: Record a brief engineering rationale explaining why behavior is preserved.[m
+[32m+[m[32m* **Class B: Behavior-Changing Change**[m
+[32m+[m[32m  * **When to use**: Applied when the externally observable behavior of the repository may change.[m
+[32m+[m[32m  * **Examples**: Public API changes, parser regex behavior changes, repository workflow modifications, data model schema changes, user-visible output format changes, and semantic logic adjustments.[m
+[32m+[m[32m  * **Requirement**: Perform a complete, canonical Testing Impact Analysis (TIA) before implementation.[m
+[32m+[m
+[32m+[m[32m### Testing Impact Analysis (TIA)[m
+[32m+[m
+[32m+[m[32mThe purpose of Testing Impact Analysis (TIA) is to ensure that every behavior-changing (Class B) modification is explicitly analyzed from a testing perspective prior to implementation. By forcing contributors to explicitly map new behaviors to test coverage, we avoid untested code paths, prevent silent regressions, and make engineering decisions regarding tests explicit rather than implicit.[m
+[32m+[m
+[32m+[m[32mAll Class B changes must answer the five canonical TIA questions:[m
+[32m+[m[32m1. **TIA-1**: What behavior is changing?[m
+[32m+[m[32m2. **TIA-2**: Which existing tests currently verify this behavior?[m
+[32m+[m[32m3. **TIA-3**: Are the existing tests sufficient?[m
+[32m+[m[32m4. **TIA-4**: If not, why are they insufficient?[m
+[32m+[m[32m5. **TIA-5**: **Engineering Decision** (Choose exactly one: *Existing tests are sufficient*, *Existing tests require modification*, *New tests are required*, or *No applicable tests exist*) with an explicit engineering rationale.[m
+[32m+[m
+[32m+[m[32m### Contributor Governance Workflow[m
+[32m+[m
+[32m+[m[32mEvery repository contribution must progress through the following sequential stages:[m
+[32m+[m
+[32m+[m[32m1. **Sprint Planning**: The sprint goals, scope, and deliverables are defined in a Sprint Plan document (within `docs/sprints/`).[m
+[32m+[m[32m2. **Execution Contract (Implementation Plan)**: Before writing code, the contributor creates an Implementation Plan using the template in `docs/templates/implementation_plan_template.md`. For each task, the contributor triages the change class (Class A or Class B) and documents the corresponding rationale or TIA answers. This document is reviewed and approved as the Execution Contract.[m
+[32m+[m[32m3. **Implementation**: The contributor writes the code and tests in strict compliance with the approved Execution Contract. If deviations are necessary, coding stops, and the contract must be revised and re-approved before proceeding.[m
+[32m+[m[32m4. **Verification**: Independent or automated validation (such as running the test suite via `pytest` and auditing document consistency) is performed to confirm correctness and ensure no regression has occurred.[m
+[32m+[m[32m5. **Retrospective**: After implementation is verified and merged, a retrospective is conducted to capture learnings and address any process improvements or gaps.[m
+ [m
+ ---[m
+ [m
+[1mdiff --git a/docs/current_status.md b/docs/current_status.md[m
+[1mindex ce1886c..d7d19bd 100644[m
+[1m--- a/docs/current_status.md[m
+[1m+++ b/docs/current_status.md[m
+[36m@@ -30,6 +30,7 @@[m [mThe following architectural components are currently considered stable:[m
+ - Structural repository query support[m
+ - Snapshot synchronization workflow[m
+ - Draft RFC governance structure[m
+[32m+[m[32m- Engineering Change Governance framework (Class A/Class B change classification & TIA-1 to TIA-5 workflows)[m
+ [m
+ Current stable repository projection flow:[m
+ [m
+[36m@@ -60,7 +61,6 @@[m [mCurrent development focus areas:[m
+ - statistical metadata separation[m
+ - repository workflow validation[m
+ - AI handoff continuity[m
+[31m-- architecture governance refinement[m
+ [m
+ Current priority is validating real repository workflow behavior before expanding semantic capabilities.[m
+ [m
+[1mdiff --git a/docs/retrospectives/retrospective_sprint_003.md b/docs/retrospectives/retrospective_sprint_003.md[m
+[1mindex e69de29..d390bb5 100644[m
+[1m--- a/docs/retrospectives/retrospective_sprint_003.md[m
+[1m+++ b/docs/retrospectives/retrospective_sprint_003.md[m
+[36m@@ -0,0 +1,205 @@[m
+[32m+[m[32m# Sprint 003 Retrospective[m
+[32m+[m
+[32m+[m[32m## Sprint Information[m
+[32m+[m
+[32m+[m[32m**Sprint:** Sprint 003 — Engineering Change Governance[m
+[32m+[m
+[32m+[m[32m**Status:** Completed[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m# 1. Sprint Goal[m
+[32m+[m
+[32m+[m[32mSprint 003 aimed to establish a lightweight but disciplined engineering governance workflow for SciForge-Edu.[m
+[32m+[m
+[32m+[m[32mThe primary objective was not to add runtime functionality, but to create a repeatable engineering process that enables multiple AI systems to collaborate safely through repository artifacts rather than conversational context.[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m# 2. Planned Deliverables[m
+[32m+[m
+[32m+[m[32mThe sprint planned to deliver:[m
+[32m+[m
+[32m+[m[32m* Engineering Change Governance Policy[m
+[32m+[m[32m* Standardized Execution Contract template[m
+[32m+[m[32m* Repository documentation updates[m
+[32m+[m[32m* Governance workflow validation (dogfooding)[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m# 3. Delivered Artifacts[m
+[32m+[m
+[32m+[m[32mThe sprint successfully produced:[m
+[32m+[m
+[32m+[m[32m* Engineering Change Governance Policy[m
+[32m+[m[32m* Execution Contract infrastructure[m
+[32m+[m[32m* Standardized planning template[m
+[32m+[m[32m* Repository documentation updates[m
+[32m+[m[32m* Sprint governance validation[m
+[32m+[m[32m* Independent implementation verification[m
+[32m+[m[32m* Verification resolution[m
+[32m+[m
+[32m+[m[32mAll implementation activities were completed without introducing runtime behavior changes.[m
+[32m+[m
+[32m+[m[32mRepository validation continued to pass after implementation.[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m# 4. What Worked Well[m
+[32m+[m
+[32m+[m[32m## 4.1 Architecture-first development[m
+[32m+[m
+[32m+[m[32mThe sprint demonstrated that repository governance can be designed before implementation begins.[m
+[32m+[m
+[32m+[m[32mThe approved Execution Contract provided a stable implementation target and significantly reduced ambiguity during implementation.[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m## 4.2 AI role separation[m
+[32m+[m
+[32m+[m[32mThree independent AI roles successfully collaborated:[m
+[32m+[m
+[32m+[m[32m* Architecture (planning, governance, approval)[m
+[32m+[m[32m* Implementation (execution)[m
+[32m+[m[32m* Independent Verification (compliance verification)[m
+[32m+[m
+[32m+[m[32mThis separation reduced confirmation bias and improved implementation quality.[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m## 4.3 Repository as the source of truth[m
+[32m+[m
+[32m+[m[32mImplementation relied on committed repository artifacts rather than conversational history.[m
+[32m+[m
+[32m+[m[32mThis significantly improved traceability and AI transferability.[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m## 4.4 Independent verification[m
+[32m+[m
+[32m+[m[32mIndependent verification identified genuine contract deviations rather than implementation bugs.[m
+[32m+[m
+[32m+[m[32mArchitecture reviewed those findings and distinguished between:[m
+[32m+[m
+[32m+[m[32m* Blocking issues[m
+[32m+[m[32m* Minor issues[m
+[32m+[m[32m* Out-of-scope observations[m
+[32m+[m
+[32m+[m[32mThis validated the governance workflow itself.[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m# 5. What Did Not Work Well[m
+[32m+[m
+[32m+[m[32m## 5.1 Verification inputs were implicit[m
+[32m+[m
+[32m+[m[32mThe Execution Contract described implementation clearly, but did not explicitly define the verification baseline or expected verification targets.[m
+[32m+[m
+[32m+[m[32mAs a result, additional instructions were required for the independent verifier.[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m## 5.2 Verification authority was not explicitly defined[m
+[32m+[m
+[32m+[m[32mIndependent verification correctly identified implementation deviations.[m
+[32m+[m
+[32m+[m[32mHowever, the verifier also attempted to determine Sprint completion.[m
+[32m+[m
+[32m+[m[32mSprint completion should remain an architectural governance decision rather than a verification responsibility.[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m## 5.3 README onboarding required an additional iteration[m
+[32m+[m
+[32m+[m[32mThe initial implementation introduced the governance concepts but did not fully explain the contributor workflow.[m
+[32m+[m
+[32m+[m[32mThis required a verification-driven documentation refinement.[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m# 6. Lessons Learned[m
+[32m+[m
+[32m+[m[32mThe sprint produced several important engineering lessons.[m
+[32m+[m
+[32m+[m[32m1. Repository artifacts are more reliable than conversational context for AI collaboration.[m
+[32m+[m
+[32m+[m[32m2. An approved Execution Contract provides a stronger implementation target than an implementation plan alone.[m
+[32m+[m
+[32m+[m[32m3. Independent verification should verify contract compliance rather than redesign architecture.[m
+[32m+[m
+[32m+[m[32m4. Architecture remains responsible for determining whether verification findings are blocking.[m
+[32m+[m
+[32m+[m[32m5. Governance documentation should be designed for both implementation and verification.[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m# 7. Governance Assessment[m
+[32m+[m
+[32m+[m[32mSprint 003 successfully demonstrated that engineering governance can be implemented using repository artifacts as the primary communication mechanism.[m
+[32m+[m
+[32m+[m[32mThe resulting workflow is:[m
+[32m+[m
+[32m+[m[32m```text[m
+[32m+[m[32mSprint[m
+[32m+[m[32m    ↓[m
+[32m+[m[32mApproved Execution Contract[m
+[32m+[m[32m    ↓[m
+[32m+[m[32mImplementation[m
+[32m+[m[32m    ↓[m
+[32m+[m[32mIndependent Verification[m
+[32m+[m[32m    ↓[m
+[32m+[m[32mVerification Resolution[m
+[32m+[m[32m    ↓[m
+[32m+[m[32mSprint Close[m
+[32m+[m[32m    ↓[m
+[32m+[m[32mRetrospective[m
+[32m+[m[32m```[m
+[32m+[m
+[32m+[m[32mThis workflow is independent of any specific AI model and supports AI-transferable engineering.[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m# 8. Candidate Improvements for Sprint 004[m
+[32m+[m
+[32m+[m[32mThe following items are intentionally deferred to Sprint 004.[m
+[32m+[m
+[32m+[m[32m## Candidate 1[m
+[32m+[m
+[32m+[m[32mExtend the Execution Contract with a dedicated **Verification Inputs** section defining:[m
+[32m+[m
+[32m+[m[32m* verification baseline[m
+[32m+[m[32m* expected deliverables[m
+[32m+[m[32m* verification scope[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m## Candidate 2[m
+[32m+[m
+[32m+[m[32mDefine **Verification Authority**, clearly separating:[m
+[32m+[m
+[32m+[m[32m* Implementation[m
+[32m+[m[32m* Independent Verification[m
+[32m+[m[32m* Architecture[m
+[32m+[m[32m* Sprint Close authority[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m## Candidate 3[m
+[32m+[m
+[32m+[m[32mDefine a repository-wide engineering metadata convention for governance artifacts.[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m## Candidate 4[m
+[32m+[m
+[32m+[m[32mReview and standardize the long-term repository organization for engineering artifacts.[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m# 9. Overall Assessment[m
+[32m+[m
+[32m+[m[32mSprint 003 achieved its primary objective.[m
+[32m+[m
+[32m+[m[32mRather than delivering runtime functionality, it established and successfully validated an engineering governance workflow that supports repository-driven collaboration among multiple independent AI systems.[m
+[32m+[m
+[32m+[m[32mThis sprint provides the governance foundation upon which future functional development can proceed with improved traceability, reviewability, and engineering discipline.[m
+[1mdiff --git a/docs/sprints/sprint_003_engineering_change_governance.md b/docs/sprints/sprint_003_engineering_change_governance.md[m
+[1mindex 73af163..eb5c645 100644[m
+[1m--- a/docs/sprints/sprint_003_engineering_change_governance.md[m
+[1m+++ b/docs/sprints/sprint_003_engineering_change_governance.md[m
+[36m@@ -6,7 +6,7 @@[m [mSprint 003[m
+ [m
+ **Status**[m
+ [m
+[31m-Approved[m
+[32m+[m[32mCompleted[m
+ [m
+ **Sprint Type**[m
+ [m
+[36m@@ -305,4 +305,48 @@[m [mSprint 003 is complete when:[m
+ [m
+ ---[m
+ [m
+[32m+[m[32m# 14. Implementation Results & Dogfooding Verification[m
+[32m+[m
+[32m+[m[32mSprint 003 has been implemented in strict compliance with the Approved Execution Contract.[m
+[32m+[m
+[32m+[m[32m## Change Triage and Testing Impact Analysis (TIA)[m
+[32m+[m[32m* **Triage**: Class A (Behavior-Preserving Change)[m
+[32m+[m[32m* **Engineering Rationale**: Sprint 003 is a documentation and engineering governance sprint. It creates the Change Governance Policy, the Implementation Plan Template, and updates the README, current status, and CHANGELOG metadata. It does not introduce any python code modifications, script additions, or testing logic changes. Thus, the externally observable behavior of the repository remains unchanged, and existing tests are sufficient to verify that no functional regressions have occurred.[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m## 15. Validation Evidence[m
+[32m+[m
+[32m+[m[32m### 1. Documentation Consistency Audit[m
+[32m+[m[32m* Checked files:[m
+[32m+[m[32m  - `docs/governance/engineering_change_governance_policy.md`[m
+[32m+[m[32m  - `docs/templates/implementation_plan_template.md`[m
+[32m+[m[32m  - `README.md`[m
+[32m+[m[32m  - `docs/current_status.md`[m
+[32m+[m[32m  - `CHANGELOG.md`[m
+[32m+[m[32m* Verification: Wording and links are verified as internally consistent. Terminology ("Class A", "Class B", "TIA-1" through "TIA-5") is unified.[m
+[32m+[m
+[32m+[m[32m### 2. Repository Validation[m
+[32m+[m[32m* Execution: Ran the test suite via `pytest`.[m
+[32m+[m[32m* Result: All 100 tests passed, confirming zero regressions.[m
+[32m+[m
+[32m+[m[32m### 3. Workflow Validation (Mock Walkthroughs)[m
+[32m+[m[32m* **Class A Walkthrough**: Verified that a minor documentation correction can be triaged as Class A with a brief rationale without the full TIA questionnaire burden.[m
+[32m+[m[32m  * *Mock Scenario*: Correcting a typo in a docstring inside `src/models/question.py`.[m
+[32m+[m[32m  * *Triage*: Class A (Behavior-Preserving Change)[m
+[32m+[m[32m  * *Engineering Rationale*: The change only affects documentation/comments and does not alter the execution logic or public interfaces. Existing tests are fully sufficient.[m
+[32m+[m[32m* **Class B Walkthrough**: Verified that a hypothetical behavioral change maps to Class B and requires answering TIA-1 to TIA-5.[m
+[32m+[m[32m  * *Mock Scenario*: Adding a `tags` field (list of strings) to the `Question` data model and updating `RepositoryManager.search()` to filter by tag.[m
+[32m+[m[32m  * *Triage*: Class B (Behavior-Changing Change)[m
+[32m+[m[32m  * *Testing Impact Analysis*:[m
+[32m+[m[32m    * **TIA-1 (Behavior Change)**: We are adding a new optional field `tags: List[str] = Field(default_factory=list)` to the `Question` Pydantic model. We are also updating the `RepositoryManager.search()` method to accept a list of tags and filter results accordingly. This changes both the data schema and query behaviors.[m
+[32m+[m[32m    * **TIA-2 (Verification Context)**: Existing model validation tests are defined in `tests/test_models.py`. Existing search filtering tests are defined in `tests/test_repository.py`.[m
+[32m+[m[32m    * **TIA-3 (Sufficiency)**: Are existing tests sufficient? No.[m
+[32m+[m[32m    * **TIA-4 (Insufficiency Details)**: The current test suite has no questions defined with tags, and does not assert that filtering by tag operates correctly. Therefore, existing tests are insufficient to verify the new features.[m
+[32m+[m[32m    * **TIA-5 (Engineering Decision)**:[m
+[32m+[m[32m      * *Decision*: *New tests are required.*[m
+[32m+[m[32m      * *Rationale*: We must add specific test cases. First, in `tests/test_models.py` to verify that `Question` instances correctly serialize/deserialize the new `tags` list. Second, in `tests/test_repository.py` to populate a mock database with questions having various tag combinations and assert that `RepositoryManager.search(tags=[...])` filters and retrieves the correct subset of questions.[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+ **End of Sprint 003**[m
