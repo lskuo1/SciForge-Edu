@@ -36,6 +36,7 @@ The repository operates on a structured knowledge model that preserves engineeri
 - **Design Specifications**: Preserved in [docs/draft/](../draft/) as draft RFCs detailing system capabilities.
 - **Sprint Records**: Saved under [docs/sprints/](../sprints/) to record the plans and outcomes of past sprints.
 - **Sprint Retrospectives**: Saved under [docs/retrospectives/](../retrospectives/) to track observations and process improvements.
+- **Governance Findings**: Maintained in [finding_registry.md](finding_registry.md) and [docs/governance/findings/](findings/) to preserve repository-level governance knowledge, engineering observations, and lessons learned across multiple sprints.
 
 ---
 
@@ -78,15 +79,22 @@ Contributors refer to the following canonical repository documents:
 - [implementation_plan_template.md](../templates/implementation_plan_template.md): Template for creating Sprint Implementation Plans.
 - [api_snapshot.md](../api_snapshot.md): Core data models and schema snapshot reference.
 - [current_status.md](../current_status.md): Repository focus guidelines, tensions, and handoff instructions.
+- [finding_registry.md](finding_registry.md): Canonical index of Governance Findings and their lifecycle status.
 
 ---
 
 ## 7. Contributor Rules
 
 - **Repository-First**: The existing repository organization is the authoritative engineering source. Avoid inventing files, structures, or policies not defined in the repository.
+
 - **Single Responsibility**: This document focuses on navigation and contributor orientation; it does not define or duplicate governance policies.
+
 - **Obedience to Approved Plans**: Development is guided by the approved Implementation Plan. If the implementation details deviate, update the plan and seek re-approval.
+
 - **Change Triage Compliance**: Classify tasks according to the change classification model. Behavior-changing changes require completing the TIA framework in the Implementation Plan.
-- **Documentation Consistency**: Keep design drafts, model snapshots, and code implementations synchronized by updating documentation when changes affect their accuracy.
+
+- **Repository Knowledge Consistency**: Keep repository knowledge synchronized. Whenever an engineering change affects the accuracy, authority, lifecycle, or discoverability of repository knowledge, update the corresponding repository artifacts as part of the same engineering change. Repository indexes and registries shall remain consistent with the artifacts they reference.
+
 - **Verification Completion**: Run tests and complete validation checklists to verify implementation correctness before concluding a task.
-- **AI Handoff Preservation**: Update the model snapshot ([api_snapshot.md](../api_snapshot.md)) and current status ([current_status.md](../current_status.md)) when changes affect their accuracy to ensure they remain correct for subsequent development and AI sessions.
+
+- **AI Handoff Preservation**: Ensure repository knowledge remains sufficient for subsequent engineering sessions, including independent AI contributors starting from a cold session.
