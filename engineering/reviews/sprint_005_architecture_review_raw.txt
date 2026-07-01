@@ -1,0 +1,613 @@
+------------ prompt ---------------------------------
+The SciForge-Edu repository has completed the governance foundation established by Sprint 005.
+
+The repository now contains governance artifacts including:
+
+- Engineering Governance Policy
+- Engineering Contributor Guide
+- Repository Governance Validation (RGV)
+- Repository Governance Assurance Model (RGAM)
+- AI Compliance Test Framework (ACTF)
+- Governance Architecture
+- Sprint 005 Architecture Proposal
+
+Sprint 005 has not yet entered implementation.
+
+The repository engineering workflow established by previous governance documents is:
+
+Planning
+→ Approval
+→ Execution Contract
+→ Implementation
+→ Verification
+→ Retrospective
+
+We are now deciding the correct next engineering step.
+
+Please evaluate the situation strictly from the perspective of repository governance compliance.
+
+Do NOT evaluate convenience.
+
+Do NOT evaluate project management preferences.
+
+Do NOT optimize for speed.
+
+Assume the repository engineering workflow itself is the authoritative source.
+
+------------------------------------------------------------
+Current Question
+------------------------------------------------------------
+
+Should Sprint 005 now proceed directly to implementing governance assets such as:
+
+- Compliance Test Catalog
+- Compliance Test Template
+- CT-001 Repository Discovery
+- Evaluation Report Template
+
+or
+
+Should Sprint 005 first produce:
+
+- Sprint 005 Implementation Plan
+- Architecture Review / Approval
+- Sprint 005 Execution Contract
+
+before any implementation begins?
+
+------------------------------------------------------------
+Evaluation Tasks
+------------------------------------------------------------
+
+Please answer all of the following.
+
+### 1. Governance Compliance
+
+According to the repository engineering workflow,
+
+what is the correct next step?
+
+Explain why.
+
+------------------------------------------------------------
+
+### 2. Workflow Consistency
+
+Would beginning implementation immediately constitute a violation of the repository's own governance workflow?
+
+If yes,
+
+identify exactly which governance rule would be bypassed.
+
+------------------------------------------------------------
+
+### 3. Implementation Plan Requirement
+
+Should Sprint 005 produce an Implementation Plan?
+
+If yes,
+
+explain:
+
+- why it is required;
+- which repository artifacts require it;
+- what engineering purpose it serves.
+
+------------------------------------------------------------
+
+### 4. Approval Requirement
+
+Should Sprint 005 require formal approval before implementation begins?
+
+If yes,
+
+explain:
+
+- who (or what role) is expected to approve;
+- what should be approved;
+- why approval is important for governance consistency.
+
+------------------------------------------------------------
+
+### 5. Execution Contract Requirement
+
+Should Sprint 005 create an Execution Contract after approval?
+
+If yes,
+
+explain:
+
+- why;
+- what it should contain;
+- whether governance assets should be considered implementation subject to execution contracts.
+
+------------------------------------------------------------
+
+### 6. Governance Self-Validation
+
+Repository Governance Validation (RGV) claims that repository contributors should follow the repository engineering workflow.
+
+Should Sprint 005 itself become the first governance validation case?
+
+In other words,
+
+would skipping the Implementation Plan or Execution Contract weaken the credibility of Repository Governance Validation itself?
+
+Explain your reasoning.
+
+------------------------------------------------------------
+
+### 7. Risks
+
+Identify the engineering risks introduced if Sprint 005 skips:
+
+- Implementation Plan
+- Approval
+- Execution Contract
+
+before beginning governance implementation.
+
+------------------------------------------------------------
+
+### 8. Recommendation
+
+Provide your recommended sequence of work from this point forward.
+
+For example:
+
+Architecture Proposal
+↓
+
+Implementation Plan
+↓
+
+Approval
+↓
+
+Execution Contract
+↓
+
+Governance Asset Implementation
+↓
+
+Verification
+↓
+
+Retrospective
+
+If you recommend a different sequence,
+
+justify it.
+
+------------------------------------------------------------
+
+### 9. Overall Assessment
+
+Finally,
+
+answer this question as the repository architect.
+
+Would proceeding directly to CT-001 and the Compliance Test Catalog be considered governance non-compliance?
+
+Or would it be acceptable?
+
+Provide a clear conclusion with supporting reasoning.
+
+Focus entirely on repository governance.
+
+Ignore runtime implementation.
+
+Treat the repository engineering workflow as the primary authority.
+
+
+--------- response by antigravity 
+以下是針對 Sprint 005 下一步工程決策的儲存庫治理合規性評估：
+  ──────
+  ### 1. 治理合規性 (Governance Compliance)
+
+  根據 engineering_contributor_guide.md 第 5 節的規定：
+
+  • 正確的下一步：Sprint 005 應先產出 Sprint 005 實作計畫 (Implementation Plan)，提交架構擁有者進行審查與批准，確立為**批准的實作計畫（即執行合約）**後，方可開始任何實作。
+  • 原因：指南明確指出：「開發在計畫經架構擁有者批准後開始。」直接編寫  CT-001  或合規性目錄檔案屬於「實作（Implementation）」階段，跳過規劃與審批將直接違反儲存庫既定的工作流順序。
+  ──────
+  ### 2. 工作流一致性 (Workflow Consistency)
+
+  是的，立即開始實作將構成對儲存庫自身治理工作流的違規。
+  • 被繞過的具體治理規則：
+      1. 遵守批准計畫規則 (Obedience to Approved Plans)（見 engineering_contributor_guide.md）：「未經批准的實作計畫，不得進行任何開發。」
+      2. 變更分流合規規則 (Change Triage Compliance)（見 engineering_contributor_guide.md）：「所有任務必須顯式進行分流。」實作測試目錄和範本會改變儲存庫的驗證行為，屬於 Class B（變更行為）或 Class
+A（若僅為文件），必須先在計畫中填寫分流與
+      TIA 分析。
+
+  ──────
+  ### 3. 實作計畫要求 (Implementation Plan Requirement)
+  Sprint 005 必須產出實作計畫。
+
+  • 原因：用以規劃實作的具體步驟（如編寫驗證腳本、建立測試目錄結構），並對受影響的文件進行變更分流。
+  • 要求的儲存庫成品：
+      • engineering_contributor_guide.md (第 5 節與第 7 節)
+      • engineering_change_governance_policy.md (第 3 節，規定 Class B 變更必須執行 TIA)
+  • 工程目的：強制在編寫任何程式碼/文件前，進行顯式的變更分類與測試影響分析 (TIA)，預先定義驗證計畫與回滾策略，避免盲目實作。
+  ──────
+  ### 4. 審批要求 (Approval Requirement)
+  Sprint 005 在實作前必須取得正式審批。
+
+  • 審批角色：架構擁有者 (Architecture Owner)。
+  • 審批對象：基於 implementation_plan_template.md 撰寫的 Sprint 005 實作計畫。
+  • 重要性：確保實作計畫中定義的測試案例（如  CT-001 ）與  api_snapshot.md  及專案架構完全一致，並在進入實作前鎖定開發範疇，維持 Pull Request 審查閘口的完整性。
+  ──────
+  ### 5. 執行合約要求 (Execution Contract Requirement)
+
+  Sprint 005 批准後必須確立執行合約（即經批准的實作計畫）。
+  • 原因：用以鎖定該 sprint 的交付物邊界，防止開發過程中的範疇蔓延 (Scope Creep)。
+  • 包含內容：應包含變更分流、TIA-1 至 TIA-5 答覆、受影響檔案清單、具體任務拆解、驗證計畫以及回滾計畫。
+  • 治理資產是否適用：是的。治理資產（如合規測試目錄、驗證腳本）同樣是儲存庫程式碼與文件的一部分。修改治理資產會影響協作者的開發流程，因此其變更必須與運行期程式碼一樣，受到執行合約的約束。
+  ──────
+  ### 6. 治理自我驗證 (Governance Self-Validation)
+
+  是的，Sprint 005 本身應成為第一個治理驗證案例。
+  • 理由：
+      • repository_governance_validation.md 的核心論點是「儲存庫引導貢獻者行為的可重複性」。如果維護者自己在實作治理工具時都跳過了工作流程，將直接削弱該驗證系統的公信力。
+      • 若跳過實作計畫與執行合約，未來冷啟動的 AI 協作者在學習儲存庫時，將會觀察到「治理文件是不需計畫即可任意修改」的錯誤範例，導致 AI 行為出現不一致的偏差。
+
+  ──────
+  ### 7. 工程風險 (Risks)
+
+  若 Sprint 005 跳過計畫、審批與合約直接進入實作，將引入以下風險：
+
+  1. 開發範疇蔓延：在沒有合約約束的情況下，開發  CT-001  可能會過度延伸至運行期代碼的修改，打亂 Sprint 005 的兩階段劃分。
+  2. 追溯性缺失：未來 AI 協作者無法在 Git 歷史中找到「為什麼採用此合規測試結構」的 TIA 決策理由。
+  3. 治理流程失效：破壞了 PR 審查機制中「無計畫即拒絕變更」的強制性規定，導致流程紀律瓦解。
+  ──────
+  ### 8. 建議順序 (Recommendation)
+
+  建議嚴格遵循以下工程順序：
+
+    架構提案 (Architecture Proposal) [已完成]
+          │
+          ▼
+    實作計畫 (Implementation Plan) [複製範本並填寫 TIA]
+          │
+          ▼
+    審查與批准 (Architecture Review & Approval)
+          │
+          ▼
+    確立執行合約 (Approved Execution Contract)
+          │
+          ▼
+    治理資產實作 (Governance Asset Implementation) [實作 CT-001 等]
+          │
+          ▼
+    驗證 (Verification) [執行 pytest 與合規腳本]
+          │
+          ▼
+    回顧 (Retrospective)
+    ──────
+  ### 9. 總體評估 (Overall Assessment)
+
+  結論：直接進入  CT-001  和合規測試目錄實作，將被判定為嚴重的「治理不合規 (Governance Non-compliance)」。
+
+  • 論證：
+  在 SciForge-Edu 的「儲存庫優先」架構中，engineering_contributor_guide.md 是最高引導規範。該指南明確禁止在沒有批准實作計畫的情況下進行任何代碼或文件修改。實作  CT-001 
+  與測試目錄屬於實質性的儲存庫修改，必須嚴格依循工作流。因此，直接實作是不可接受的，必須先完成實作計畫與審批程序。
+
+
+---------------------------------------
+---------------------------------------
+---------------------------------------
+
+--------------- by codex -------------------
+I’ll inspect the repository’s governance documents and trace each conclusion to the actual workflow language. This is a read-only governance assessment; I will not modify files.
+
+# Governance assessment
+
+Sprint 005 should not proceed directly to CT-001, the Compliance Test Catalog, or the Evaluation Report Template.
+
+The compliant next step is to create the Sprint 005 Implementation Plan, complete architecture review and approval, and establish the approved plan as the Sprint 005 Execution Contract before creating further governance assets.
+
+## 1. Governance compliance
+
+The next step is:
+
+```text
+Sprint 005 Implementation Plan
+        ↓
+Change classification and TIA determination
+        ↓
+Architecture review and formal approval
+        ↓
+Approved Execution Contract
+```
+
+Only then should implementation begin.
+
+The Engineering Contributor Guide requires every engineering modification to progress through planning, triage, approval, implementation, verification, and retrospective. It specifically says to create an Implementation Plan and that development begins only after approval by the architecture owner ([engineering_contributor_guide.md](/home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/docs/governance/engineering_contributor_guide.md:60)).
+
+The existing Sprint 005 document cannot substitute for this because:
+
+- It is an architecture proposal, not an implementation plan.
+- Its status remains `Proposed` ([sprint_005_architecture_proposal.md](/home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/docs/sprints/sprint_005_architecture_proposal.md:4)).
+- It does not constitute recorded approval.
+- It does not provide the complete execution controls required by the Implementation Plan template.
+
+## 2. Workflow consistency
+
+Yes. Beginning implementation immediately would violate the repository workflow.
+
+It would bypass:
+
+1. **Planning** — creation of an Implementation Plan.
+2. **Triage** — Class A/Class B classification and any required Testing Impact Analysis.
+3. **Approval** — review and approval by the architecture owner.
+4. **Approved-plan control** — implementation must follow the approved plan, with deviations requiring re-approval.
+
+These rules are explicit in the Contributor Guide ([lines 62–68](/home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/docs/governance/engineering_contributor_guide.md:62)) and its “Obedience to Approved Plans” rule ([line 88](/home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/docs/governance/engineering_contributor_guide.md:88)).
+
+The governing rule is not limited to runtime code. It applies to “engineering modifications.” Creating new governance files is a repository modification.
+
+## 3. Implementation Plan requirement
+
+Yes, Sprint 005 requires an Implementation Plan.
+
+It is required by:
+
+- The Engineering Contributor Guide’s Planning stage.
+- The Engineering Change Governance Policy’s classification and TIA process.
+- The repository’s Implementation Plan/Execution Contract template.
+- The Governance Architecture, which places Implementation Plans and Execution Contracts in the Engineering Execution layer ([governance_architecture.md](/home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/docs/governance/governance_architecture.md:203)).
+- The README workflow, which identifies the Implementation Plan as the document reviewed and approved into an Execution Contract ([README.md](/home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/README.md:91)).
+
+Its engineering purpose is to define:
+
+- Files to create and modify.
+- Task boundaries and dependencies.
+- Change classification.
+- TIA where applicable.
+- Validation and acceptance criteria.
+- Risks and rollback.
+- Documentation synchronization.
+- The authorized scope against which implementation can later be verified.
+
+The Sprint 005 architecture proposal supplies architectural intent and proposed deliverables. It does not supply all these execution controls.
+
+## 4. Approval requirement
+
+Yes. Formal approval is required before implementation.
+
+The expected approver is the **architecture owner**, as explicitly identified by the Contributor Guide.
+
+Approval should cover:
+
+- The Sprint 005 architecture proposal, which remains `Proposed`.
+- The Implementation Plan and repository impact.
+- The proposed file structure and deliverables.
+- Change classifications and TIA conclusions.
+- Validation and acceptance criteria.
+- Risks, rollback, and permitted scope.
+- Any findings from architecture review.
+
+Approval matters because it creates an authoritative boundary between proposed work and authorized work. Without recorded approval, implementation has no governance evidence that its scope, architecture, and validation obligations were accepted.
+
+## 5. Execution Contract requirement
+
+Yes. After approval, Sprint 005 must have an Execution Contract.
+
+The repository currently treats the approved Implementation Plan as the Execution Contract rather than necessarily requiring two independently authored documents. The template is explicitly titled “Implementation Plan / Execution Contract” ([implementation_plan_template.md](/home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/docs/templates/implementation_plan_template.md:1)), and the README says the Implementation Plan is reviewed and approved as the Execution Contract.
+
+Therefore, the compliant lifecycle can be:
+
+```text
+Draft Implementation Plan
+        ↓ approval
+Approved Implementation Plan / Execution Contract
+```
+
+A separate post-approval file is optional unless repository policy is amended to demand one. What is mandatory is an identifiable, approved contractual artifact.
+
+It should contain:
+
+- Approval metadata and date.
+- Authorized scope.
+- Files to create or modify.
+- Task decomposition and dependencies.
+- Change classification and TIA results.
+- Validation and acceptance criteria.
+- Risks and rollback.
+- Documentation synchronization requirements.
+- Stop-and-reapprove rules for deviations.
+
+Governance assets are implementation for workflow purposes. “No runtime implementation” does not mean “no implementation.” Creating the catalog, templates, and CT-001 is implementation of the governance architecture.
+
+## 6. Governance self-validation
+
+Sprint 005 should become the first direct self-validation case.
+
+RGV states that the workflow—not the feature—is the subject under validation and expects planning, classification, TIA, approval, implementation, verification, synchronization, and retrospective ([repository_governance_validation.md](/home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/docs/governance/repository_governance_validation.md:210)).
+
+Skipping the plan, approval, or execution contract would weaken RGV because the repository would be:
+
+- Defining workflow conformance while not following that workflow.
+- Producing compliance tests through an uncontrolled process.
+- Claiming reproducibility without preserving authoritative execution evidence.
+- Demonstrating that governance work is implicitly exempt from governance.
+- Undermining GP-006 Governance Conformance in RGAM.
+
+This would be a direct failure of governance “dogfooding.”
+
+## 7. Risks of skipping governance gates
+
+Skipping the Implementation Plan introduces:
+
+- Undefined repository impact.
+- Unrecorded change classifications.
+- Missing TIA decisions.
+- Ambiguous file ownership and artifact responsibilities.
+- Incomplete acceptance and validation criteria.
+- No controlled baseline for verification.
+
+Skipping approval introduces:
+
+- Implementation of an architecture that remains formally proposed.
+- No evidence that the architecture owner accepted the scope.
+- Conflicting interpretations of artifact authority.
+- Uncontrolled architectural drift.
+- Weak auditability and accountability.
+
+Skipping the Execution Contract introduces:
+
+- No authoritative implementation boundary.
+- No enforceable stop-and-reapprove mechanism.
+- No basis for determining whether implementation conformed.
+- Scope creep and undocumented deviations.
+- Reduced reproducibility for independent contributors.
+- Weak evidence for later RGV evaluation.
+
+Collectively, these omissions would make any later “workflow conformance” test partially self-contradictory.
+
+## 8. Recommended sequence
+
+```text
+Existing Sprint 005 Architecture Proposal
+        ↓
+Architecture consistency review
+        ↓
+Sprint 005 Implementation Plan
+        ↓
+Change classification and TIA determination
+        ↓
+Formal architecture-owner approval
+        ↓
+Approved Implementation Plan becomes Execution Contract
+        ↓
+Compliance Test Catalog and template implementation
+        ↓
+CT-001 and Evaluation Report Template implementation
+        ↓
+Verification against the approved contract
+        ↓
+Documentation synchronization
+        ↓
+Sprint 005 retrospective
+```
+
+Architecture review should precede final approval because the proposal is still marked `Proposed`. The Implementation Plan may be drafted during that review, but implementation cannot begin until both architectural disposition and execution authorization are recorded.
+
+## 9. Overall assessment
+
+Proceeding directly to CT-001 and the Compliance Test Catalog would be governance non-compliance.
+
+The assets are correctly identified as Sprint 005 deliverables, but identification in a proposed architecture document is not implementation authorization. The repository requires planning, triage, approval, and implementation under an approved plan/Execution Contract.
+
+The only compliant next action is planning and approval—not governance asset creation.
+
+
+-----------------------------------------------------------
+-----------------------------------------------------------
+-----------------------------------------------------------
+
+------------ by gemini -------------------------------
+Based on a strict evaluation of the repository governance compliance and the authoritative repository engineering workflow, here is the complete analysis and architectural assessment for Sprint 005.
+
+---
+
+### 1. Governance Compliance
+
+**Correct Next Step:** Sprint 005 must **first produce a Sprint 005 Implementation Plan, conduct an Architecture Review / Approval, and create a Sprint 005 Execution Contract** before any implementation of governance assets (such as the Compliance Test Catalog or CT-001) begins.
+
+**Reasoning:** The repository engineering workflow explicitly follows a sequential progression:
+
+$$\text{Planning} \rightarrow \text{Approval} \rightarrow \text{Execution Contract} \rightarrow \text{Implementation} \rightarrow \text{Verification} \rightarrow \text{Retrospective}$$
+
+Sprint 005 currently resides in the initial phase, having only compiled the *Sprint 005 Architecture Proposal* (which forms part of Planning). Proceeding directly to coding or artifact generation skips the vital **Approval** and **Execution Contract** phases, violating the structural progression of the authority framework.
+
+---
+
+### 2. Workflow Consistency
+
+**Constitutes a Violation?** **Yes.** Beginning implementation immediately would actively bypass the established workflow rules. Specifically, it would completely circumvent:
+
+1. **The Approval Rule:** Bypasses formal peer or architectural review gates required to validate the baseline design before resources are committed.
+2. **The Execution Contract Rule:** Bypasses the requirement to bind the contributor to a formal delivery baseline, which defines the scope of work and conditions of acceptance before implementation begins.
+
+---
+
+### 3. Implementation Plan Requirement
+
+**Should Sprint 005 produce an Implementation Plan?** **Yes.** * **Why it is required:** An Architecture Proposal outlines *what* the structure is, but an Implementation Plan maps *how* that architecture translates into tangible repository assets, ensuring clear task sequencing.
+
+* **Which repository artifacts require it:** The *Engineering Governance Policy* and *Engineering Contributor Guide* mandate that any architectural change must possess a corresponding implementation breakdown to enforce traceability.
+* **Engineering Purpose:** It acts as the technical link between high-level governance rules and active development. It provides measurable milestones for the downstream *Verification* phase, ensuring that "done" is objectively defined against a planned layout.
+
+---
+
+### 4. Approval Requirement
+
+**Should Sprint 005 require formal approval before implementation begins?** **Yes.** * **Who approves:** The **Repository Architect** (or the designated Governance Review Board/Role defined in your Engineering Governance Policy).
+
+* **What should be approved:** The *Sprint 005 Architecture Proposal* paired alongside the *Sprint 005 Implementation Plan*.
+* **Importance for Consistency:** Approval is the primary enforcement mechanism for repository alignment. Without it, developers could establish rogue implementations that conflict with the repository's long-term framework, leading to architectural fragmentation and a breakdown of governance visibility.
+
+---
+
+### 5. Execution Contract Requirement
+
+**Should Sprint 005 create an Execution Contract after approval?** **Yes.** * **Why:** An Execution Contract seals the planning phase by establishing an immutable, agreed-upon scope of work, preventing scope creep during development.
+
+* **What it should contain:** A definitive list of targeted deliverables (e.g., Compliance Test Catalog, templates, CT-001 framework files), assigned contributor roles, clear acceptance criteria, and specific metrics for the *Verification* phase.
+* **Are governance assets subject to execution contracts?** **Yes.** Governance assets are code and configuration-level infrastructure within an educational/automated forge environment. They modify repository behavior and compliance frameworks; therefore, they constitute repository code and must be treated as implementation subjects bound strictly to execution contracts.
+
+---
+
+### 6. Governance Self-Validation
+
+**Should Sprint 005 become the first case?** **Yes.** Skipping these phases would critically **undermine and weaken the credibility** of the *Repository Governance Validation (RGV)* framework.
+
+Governance frameworks cannot exempt themselves from the laws they dictate. If the foundational team introduces governance features while bypassing the repository's own authoritative engineering workflow, it establishes a precedent that convenience overrides compliance. For the RGV to possess the legitimacy to validate future community contributions, Sprint 005 must strictly conform to its own guidelines as a live proof-of-concept.
+
+---
+
+### 7. Risks
+
+Skipping the plan, approval, and execution contract introduces severe repository engineering risks:
+
+* **Scope and Asset Drift:** Implementing templates and test catalogs without signed baselines allows for untraceable modifications that may drift from the *Governance Architecture* specifications.
+* **Verification Failure:** Without an Execution Contract defining explicit acceptance criteria, the *Verification* phase has no authoritative metric to evaluate the assets against, resulting in arbitrary testing.
+* **Breakdown of Peer Accountability:** Contributor actions become disconnected from governance oversight, turning structural changes into isolated efforts with unvetted configurations.
+
+---
+
+### 8. Recommendation
+
+The recommended, compliant sequence of work forward is:
+
+$$\text{Architecture Proposal}$$
+
+$$\Downarrow$$
+
+$$\textbf{Implementation Plan (Drafting detailed tasks/asset layouts)}$$
+
+$$\Downarrow$$
+
+$$\textbf{Architecture Review / Formal Approval (Gate Check by Architect role)}$$
+
+$$\Downarrow$$
+
+$$\textbf{Execution Contract (Scope lock and verification criteria sign-off)}$$
+
+$$\Downarrow$$
+
+$$\text{Governance Asset Implementation (CT-001, catalogs, templates, reports)}$$
+
+$$\Downarrow$$
+
+$$\text{Verification (Automated & architectural validation against contract rules)}$$
+
+$$\Downarrow$$
+
+$$\text{Retrospective}$$
+
+---
+
+### 9. Overall Assessment
+
+**Conclusion from the Repository Architect:** Proceeding directly to implementing `CT-001` and the *Compliance Test Catalog* at this stage **constitutes explicit governance non-compliance.** It is completely **unacceptable**. While executing the workflow strictly might appear slower, repository governance values structural assurance and strict compliance verification over speed. Moving straight to code turns a structured engineering workflow into an ad-hoc arrangement, invalidating the entire purpose of the governance foundation established in Sprint 005. To protect the technical integrity of the forge, Sprint 005 must halt asset creation and clear the formal Planning, Approval, and Contractual gates first.
