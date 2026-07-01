@@ -53,6 +53,7 @@ Status:
 
 The repository contains engineering documentation tracking developmental work and project status:
 
+- **Contributor Guide** (`docs/governance/engineering_contributor_guide.md`): The canonical entry point for repository orientation, discovery, and navigation mapping.
 - **Repository Audits** (`docs/audits/`): Reports documenting observations, architecture mismatches, and compliance audits (e.g. Sprint 001 audit).
 - **Sprint Plans** (`docs/sprints/`): Documents outlining sprint goals, deliverables, and implementation schedules (e.g. Sprint 002 planning).
 - **Change Governance** (`docs/governance/engineering_change_governance_policy.md`): Defines change classification tiers (Class A vs. Class B) and canonical Testing Impact Analysis (TIA-1 to TIA-5) required for behavior changes.

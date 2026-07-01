@@ -37,6 +37,10 @@ Notes:
 ## Unreleased
 
 Added:
+- **Sprint 004 (Engineering Contributor Guide)**:
+  - Created the Engineering Contributor Guide (`docs/governance/engineering_contributor_guide.md`) to serve as the canonical entry point for contributor onboarding and discovery.
+  - Mapped repository components, specification drafts, source directories, and test files to optimize navigation.
+  - Updated repository status tracking (`docs/current_status.md`) to mark the establishment of the governance baseline and pivot focus back to runtime development.
 - **Sprint 003 (Engineering Change Governance)**:
   - Created Engineering Change Governance Policy (`docs/governance/engineering_change_governance_policy.md`) defining Class A (behavior-preserving) and Class B (behavior-changing) change classifications.
   - Created standardized execution/planning template (`docs/templates/implementation_plan_template.md`) mandating the Testing Impact Analysis (TIA-1 to TIA-5) workflow.

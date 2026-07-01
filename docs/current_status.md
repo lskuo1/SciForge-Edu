@@ -2,7 +2,7 @@
 
 Status: Active
 
-Last Updated: 2026-05-27
+Last Updated: 2026-07-01
 
 
 # Purpose
@@ -31,6 +31,7 @@ The following architectural components are currently considered stable:
 - Snapshot synchronization workflow
 - Draft RFC governance structure
 - Engineering Change Governance framework (Class A/Class B change classification & TIA-1 to TIA-5 workflows)
+- Engineering Contributor Guide (repository navigation and contributor orientation)
 
 Current stable repository projection flow:
 
@@ -57,12 +58,11 @@ rather than a duplicate Question object.
 
 Current development focus areas:
 
-- usage metadata architecture
-- statistical metadata separation
-- repository workflow validation
-- AI handoff continuity
+- return focus to runtime implementation (e.g., sandbox compilation, usage/statistical metadata)
+- validate real repository behavior
+- maintain document-to-code consistency (api_snapshot.md and current_status.md)
 
-Current priority is validating real repository workflow behavior before expanding semantic capabilities.
+The repository governance baseline is established. Future development focus returns to runtime implementation.
 
 
 # Current Query System Status
@@ -183,28 +183,24 @@ before proposing architectural changes.
 
 Likely near-term evolution areas:
 
-- usage metadata layer
-- statistical query support
-- repository analytics
-- workflow orchestration
-- repository usage validation
+- usage metadata layer and query support
+- statistical query support and repository analytics
+- sandbox compilation environment and LaTeX PDF compilation service
+- repository workflow and parser validation
 
 Current priority remains:
 
 ```text
-validate repository workflow behavior
-before expanding semantic complexity
+validate repository workflow behavior and advance runtime implementation
 ```
 
 # Current Governance Notes
 
-Current governance decision:
+Current governance decisions:
 
-```text
-[snapshot updated]
-```
-
-commit suffix automation is currently deferred.
+- [Sprint 004 Completed] The Engineering Contributor Guide has been finalized as the canonical entry point for contributors.
+- The repository governance baseline is established. Future development focus returns to runtime implementation.
+- commit suffix automation is currently deferred.
 
 The repository currently treats:
 
