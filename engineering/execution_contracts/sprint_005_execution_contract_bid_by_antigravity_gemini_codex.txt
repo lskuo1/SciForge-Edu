@@ -1,0 +1,528 @@
+-------------sprint 005 execution contract bid by antigravity -------------
+   I have completed the repository inspection and drafted the engineering execution proposal for the approved Sprint 005 Execution Contract.
+
+  The detailed proposal has been saved as an artifact at:
+
+  • engineering_execution_proposal_sprint_005.md
+
+  ### Summary of Work
+
+  1. Repository Inspection: Analyzed the approved Sprint 005 contract (sprint_005_execution_contract.md), pre-existing foundation documents (governance_architecture.md, repository_governance_validation.md,
+repository_governance_assurance_model.md, ai_compliance_test_framework.md), and governance guidelines
+  (engineering_change_governance_policy.md, engineering_contributor_guide.md).
+  2. Decomposition: Organized tasks, dependencies, risks, validation strategy, and compliance gates into a concrete proposal.
+  3. Artifact Creation: Documented the engineering execution proposal.
+
+  ### Readiness Status
+
+  READY
+# Engineering Execution Proposal: Sprint 005
+## Repository Governance Validation Assets
+
+* **Date**: 2026-07-02
+* **Status**: Proposed
+* **Reference Contract**: [sprint_005_execution_contract.md](file:///home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/engineering/execution_contracts/sprint_005_execution_contract.md)
+* **Governing Policy**: [engineering_change_governance_policy.md](file:///home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/docs/governance/engineering_change_governance_policy.md)
+* **Contributor Workflow**: [engineering_contributor_guide.md](file:///home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/docs/governance/engineering_contributor_guide.md)
+
+---
+
+## 1. Repository Inspection
+
+This proposal is derived directly from the canonical repository artifacts in the `SciForge-Edu` workspace. Below is the summary of the Sprint 005 parameters based on these files:
+
+* **Sprint 005 Objective**: To establish the initial repository governance validation assets (Phase B of the [sprint_005_architecture_proposal.md](file:///home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/docs/sprints/sprint_005_architecture_proposal.md)) required to evaluate whether the repository's artifacts can guide independent human and AI contributors consistently using repository documentation alone, before resuming runtime feature development.
+* **Approved Scope (Phase B Deliverables)**:
+  1. **Compliance Test Catalog Entry Point**: [README.md](file:///home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/docs/governance/compliance_tests/README.md)
+  2. **Compliance Test Template**: [compliance_test_template.md](file:///home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/docs/governance/compliance_tests/compliance_test_template.md)
+  3. **CT-001 Repository Discovery Definition**: [CT-001-repository-discovery.md](file:///home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/docs/governance/compliance_tests/CT-001-repository-discovery.md)
+  4. **Evaluation Report Template**: [evaluation_report_template.md](file:///home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/docs/governance/templates/evaluation_report_template.md)
+  5. **Sprint 005 Retrospective**: [retrospective_sprint_005.md](file:///home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/docs/retrospectives/retrospective_sprint_005.md)
+* **Repository Boundaries**: 
+  * Only documentation files under `docs/governance/compliance_tests/`, `docs/governance/templates/`, and `docs/retrospectives/` may be created.
+  * No code or configuration changes may occur under `src/`, `tests/`, `examples/`, `scripts/`, or the root directory.
+* **Out-of-Scope Items**:
+  * Phase A recreation (pre-existing foundation documents like [governance_architecture.md](file:///home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/docs/governance/governance_architecture.md), [repository_governance_validation.md](file:///home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/docs/governance/repository_governance_validation.md), [repository_governance_assurance_model.md](file:///home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/docs/governance/repository_governance_assurance_model.md), and [ai_compliance_test_framework.md](file:///home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/docs/governance/ai_compliance_test_framework.md) are strict inputs, not deliverables).
+  * Implementation of runtime features, command-line interfaces, execution hooks, or compliance validation automation.
+  * Execution of the `CT-001` test.
+  * Creation of concrete evaluation reports.
+  * Any Sprint 006 planning or execution work.
+
+---
+
+## 2. Execution Strategy
+
+The execution of Sprint 005 will proceed in a highly structured manner, adhering strictly to the repository change governance and task dependency workflow.
+
+### Implementation Order
+We will implement the tasks in the following sequential order:
+
+```mermaid
+graph TD
+    Contract[Sprint 005 Execution Contract] --> Task1[Task 1: Compliance Test Catalog]
+    Contract --> Task2[Task 2: Compliance Test Template]
+    Task1 --> Task3[Task 3: CT-001 Repository Discovery]
+    Task2 --> Task3
+    Task2 --> Task4[Task 4: Evaluation Report Template]
+    Task3 --> Task5[Task 5: Integrated Verification]
+    Task4 --> Task5
+    Task5 --> Task6[Task 6: Sprint 005 Retrospective]
+```
+
+### Rationale & Dependency Handling
+1. **Task 1 (Catalog)** and **Task 2 (Template)**: These are the structural foundation for Phase B. They depend only on the approved contract and pre-existing ACTF files. They must be established first to define the metadata framework (naming, location, required fields) for subsequent documents.
+2. **Task 3 (CT-001)**: Implements the template (Task 2) and is registered in the catalog (Task 1).
+3. **Task 4 (Report Template)**: Relies on the test fields defined in Task 2 to ensure report-to-test alignment.
+4. **Task 5 (Verification)**: Exercises integrated validation across all newly created assets (Tasks 1-4) and verifies that no out-of-scope files have been modified.
+5. **Task 6 (Retrospective)**: Documented only after verification evidence is finalized, capturing actual outcomes and unresolved findings.
+
+### Governance Considerations
+All deliverables (Tasks 1–4) represent new, normative engineering-compliance constraints. Therefore, in accordance with the [engineering_change_governance_policy.md](file:///home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/docs/governance/engineering_change_governance_policy.md), these are classified as **Class B (Behavior-Changing)**. Testing Impact Analysis (TIA-1 through TIA-5) has been pre-documented in the reference contract and must be strictly followed.
+
+---
+
+## 3. Task Decomposition
+
+### Task 1: Establish the Compliance Test Catalog
+* **Objective**: Create the catalog entry point defining compliance test naming conventions, organizational layout, and index CT-001.
+* **Affected Files**: [README.md](file:///home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/docs/governance/compliance_tests/README.md) (to create)
+* **Expected Deliverables**: A structured markdown catalog indexing CT-001.
+* **Completion Criteria**:
+  * Identifies ACTF as the authority for test methodology.
+  * Indexes CT-001 by ID, title, domain, and relative link.
+  * Distinguishes test definitions from executions/reports.
+* **Verification Activities**: Manual inspection of links, verification of ACTF alignment.
+
+### Task 2: Create the Compliance Test Template
+* **Objective**: Define a repeatable template for authoring compliance tests, incorporating all fields required by ACTF.
+* **Affected Files**: [compliance_test_template.md](file:///home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/docs/governance/compliance_tests/compliance_test_template.md) (to create)
+* **Expected Deliverables**: A blank template containing instructions and examples for each field.
+* **Completion Criteria**:
+  * Contains every field defined in ACTF (Identifier, Objective, GP, Artifacts, Initial Conditions, Procedure, Behavior, Evidence, Pass/Fail/Inconclusive criteria).
+  * No scoring mechanisms are introduced.
+* **Verification Activities**: Field-by-field checklist comparison against [ai_compliance_test_framework.md](file:///home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/docs/governance/ai_compliance_test_framework.md).
+
+### Task 3: Define CT-001 Repository Discovery
+* **Objective**: Create a concrete compliance test to evaluate GP-001 (Discoverability).
+* **Affected Files**: [CT-001-repository-discovery.md](file:///home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/docs/governance/compliance_tests/CT-001-repository-discovery.md) (to create)
+* **Expected Deliverables**: The complete test definition file.
+* **Completion Criteria**:
+  * Conforms strictly to the Compliance Test Template.
+  * Targets GP-001 (Discoverability).
+  * Defines observable procedural actions and concrete evidence.
+  * Excludes execution details and remains a definition file.
+* **Verification Activities**: Dry walkthrough of the procedure, cold-start review.
+
+### Task 4: Create the Evaluation Report Template
+* **Objective**: Provide a reproducible template to record compliance test results, evidence, and findings.
+* **Affected Files**: [evaluation_report_template.md](file:///home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/docs/governance/templates/evaluation_report_template.md) (to create)
+* **Expected Deliverables**: Reusable report template file.
+* **Completion Criteria**:
+  * Captures repository snapshot, environment, and task details.
+  * Mandates exactly one final compliance state (PASS, FAIL, INCONCLUSIVE).
+  * Provides dedicated fields for finding registration.
+* **Verification Activities**: Test-to-report field mapping comparison, dry structural walkthrough.
+
+### Task 5: Verify the Governance Asset Set
+* **Objective**: Perform validation of all Phase B assets.
+* **Affected Files**: None (inspects created files).
+* **Expected Deliverables**: Verification checklist results and run logs.
+* **Completion Criteria**: All Section 5 verification checks are completed and recorded.
+* **Verification Activities**: Running `pytest` baseline, link validation, and cold-start review.
+
+### Task 6: Complete the Sprint 005 Retrospective
+* **Objective**: Close Sprint 005 by documenting outcomes, deviations, and findings.
+* **Affected Files**: [retrospective_sprint_005.md](file:///home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/docs/retrospectives/retrospective_sprint_005.md) (to create)
+* **Expected Deliverables**: Sprint 005 Retrospective.
+* **Completion Criteria**: 
+  * Completed after Task 5 verification.
+  * References verification evidence and lists carried-forward findings.
+* **Verification Activities**: Final review by the Architecture Owner.
+
+---
+
+## 4. Risk Assessment
+
+| Risk | Category | Rank | Mitigation Strategy |
+| :--- | :--- | :--- | :--- |
+| **Governance Authority Drift** | Governance | High | Rely on pre-existing foundation files as canonical authorities. Terminology checks during verification will ensure no duplication or modification of RGV, RGAM, or ACTF occurs. |
+| **Scope Expansion** | Governance | High | Strictly restrict file creation to the 5 authorized paths. If any file outside this list must be touched, immediately halt work and seek re-approval. |
+| **Subjective Test Criteria** | Engineering | High | Review CT-001 pass/fail/inconclusive conditions to ensure they rely entirely on observable contributor behaviors and concrete repository evidence, rather than intelligence or reasoning. |
+| **Missing Report Context** | Engineering | Medium | Mandate the capture of repository snapshot commit hash, environment configuration, and contributor parameters in the Evaluation Report Template to guarantee reproducibility. |
+| **Runtime Regression** | Engineering | Low | Inspect the final git diff to verify no code files under `src/` or `tests/` are modified. Run the baseline `pytest` suite before sprint closure. |
+| **Unauthorized Deviation** | Governance | High | Enforce a "stop work" protocol if implementation plans cannot be followed exactly. Update the plan and get Architecture Owner re-approval. |
+
+---
+
+## 5. Validation Strategy
+
+Validation will confirm that all assets are structurally complete, internally consistent, and compliant with repository governance.
+
+1. **Repository Consistency**: 
+   * A final diff will be executed to guarantee that only the five authorized files have been created, and that zero existing files have been modified.
+   * Run the existing `pytest` regression baseline to ensure no environment or configuration drift occurred.
+2. **Governance Consistency**:
+   * Execute the Responsibility Review to prove that RGV remains the *why*, RGAM the *what*, ACTF the *how*, the catalog the *test definitions*, and the report template the *record of results*.
+   * Verify that terminology matches across all documents (e.g. PASS, FAIL, INCONCLUSIVE).
+3. **Documentation Consistency**:
+   * Verify all relative markdown links resolve correctly.
+   * Confirm that CT-001 references pre-existing governance policies correctly.
+4. **Verification Evidence**:
+   * Preserve the completed checklist containing checks from Section 5 of the contract.
+   * Save the `pytest` output logs and link review logs.
+   * Save the structural dry-run results.
+   * Reference this evidence in the final [retrospective_sprint_005.md](file:///home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/docs/retrospectives/retrospective_sprint_005.md).
+
+---
+
+## 6. Repository Compliance
+
+To ensure implementation does not exceed the approved scope:
+* **Handling Scope Changes**: If a developer identifies that a file must be modified, or that a new file outside the authorized paths must be created, work must immediately stop. The change must be formally drafted as a contract revision and submitted to the Architecture Owner for re-approval.
+* **Stop Work Triggers**: 
+  * Any required change to `src/`, `tests/`, or pre-existing governance files.
+  * Any contradiction found between the new assets and pre-existing ACTF/RGAM documents.
+  * Discovery that a completion criterion cannot be satisfied.
+* **Re-approval Requirements**: Revision and re-approval are required prior to writing any code or modifying any file when a stop work trigger occurs.
+
+---
+
+## 7. Questions
+
+An inspection of the [sprint_005_execution_contract.md](file:///home/lskuo/googledrive/GitHub%20Project/SciForge-Edu/engineering/execution_contracts/sprint_005_execution_contract.md) reveals that:
+* The contract is exceptionally clear, precise, and logically structured.
+* It explicitly defines the boundaries, paths, and content requirements for all Phase B deliverables.
+* No ambiguities or conflicting requirements exist.
+* The contract is fully sufficient for implementation.
+
+---
+
+## 8. Readiness Assessment
+
+Are you ready to execute this Sprint?
+
+**READY**
+
+
+
+ 
+ 
+------------------------------------
+------------------------------------
+
+----------------- bid by gemini ------------------------
+# Engineering Execution Proposal: Sprint 005 Execution Contract
+
+**Authoritative Context:** This proposal is prepared strictly in response to the approved *Sprint 005 Execution Contract (Version 1.0)* dated 2026-07-01. It details the tactical engineering execution strategy for Phase B of Sprint 005 while maintaining absolute compliance with the repository engineering workflow.
+
+---
+
+### 1. Repository Inspection & Scope Bounds
+
+Based on an inspection of the canonical contract state, the structural definitions are understood as follows:
+
+* **Sprint 005 Objective:** Operationalize the repository's governance architecture beneath the existing RGV $\rightarrow$ RGAM $\rightarrow$ ACTF layers by creating the foundational, non-executable validation documentation assets.
+* **Approved Scope:** Production of exactly four governance artifacts and one closing artifact at specific paths:
+1. `docs/governance/compliance_tests/README.md` (Compliance Test Catalog)
+2. `docs/governance/compliance_tests/compliance_test_template.md` (Compliance Test Template)
+3. `docs/governance/compliance_tests/CT-001-repository-discovery.md` (CT-001 Test Definition)
+4. `docs/governance/templates/evaluation_report_template.md` (Evaluation Report Template)
+5. `docs/retrospectives/retrospective_sprint_005.md` (Sprint 005 Retrospective)
+
+
+* **Repository Boundaries & Exclusions (Out-of-Scope):** Runtime source files under `src/`, automated validation scripts, hooks, CI/CD pipeline code changes, execution of `CT-001`, and generation of actual evaluation reports are strictly barred from this sprint. No existing governance documents will be amended.
+
+---
+
+### 2. Execution Strategy
+
+The execution strategy relies on a serialized dependency model designed to ensure that no downstream asset is authored without its authoritative framework structure existing first:
+
+1. **Parallel Foundation (Tasks 1 & 2):** Authoring the *Compliance Test Catalog* and the *Compliance Test Template* independently but concurrently. These documents extract their schema constraints from the already established ACTF framework.
+2. **Dependent Implementation (Task 3):** Authoring `CT-001`. This asset possesses a strict dependency on the template (for structural fields) and the catalog (for path indexation alignment).
+3. **Evidence Alignment (Task 4):** Structuring the *Evaluation Report Template*. This artifact is mapped against the final fields of the Test Template to ensure a precise 1:1 mapping between structural criteria and verifiable result blocks.
+4. **Integrated Verification (Task 5):** A comprehensive non-executable static evaluation pass to finalize the integrity of all deliverables.
+5. **Retrospective Closure (Task 6):** Formal closeout following successful verification.
+
+---
+
+### 3. Task Decomposition
+
+#### Task 1: Establish the Compliance Test Catalog
+
+* **Objective:** Define the catalog structure, identifier syntax guidelines, and discovery entry points.
+* **Affected Files:** `docs/governance/compliance_tests/README.md`
+* **Expected Deliverables:** A markdown file indexing existing tests and establishing framework boundaries.
+* **Completion Criteria:** References ACTF as the methodological authority, maps `CT-001` via a relative link, and introduces no redundant definitions.
+* **Verification Activities:** Manual link verification and cross-referencing text boundaries against existing layers.
+
+#### Task 2: Create the Compliance Test Template
+
+* **Objective:** Map all eleven structural fields defined in ACTF into a reusable authoring asset.
+* **Affected Files:** `docs/governance/compliance_tests/compliance_test_template.md`
+* **Expected Deliverables:** A normative markdown template document for future test authoring.
+* **Completion Criteria:** Contains explicit blocks for all fields from Identifier to Inconclusive Conditions, restricting state declarations to PASS, FAIL, or INCONCLUSIVE.
+* **Verification Activities:** Exact field-for-field checklist comparison against the ACTF source section.
+
+#### Task 3: Define CT-001 Repository Discovery
+
+* **Objective:** Author the repository's first operational, documentation-based discovery test.
+* **Affected Files:** `docs/governance/compliance_tests/CT-001-repository-discovery.md`
+* **Expected Deliverables:** A concrete markdown compliance test file.
+* **Completion Criteria:** Strictly adheres to Task 2's template format, binds directly to RGAM property `GP-001 Discoverability`, relies only on repository snapshot initial states, and defines observable passing thresholds.
+* **Verification Activities:** Blueprint layout mapping validation.
+
+#### Task 4: Create the Evaluation Report Template
+
+* **Objective:** Standardize the evidence container layout for reporting execution outcomes.
+* **Affected Files:** `docs/governance/templates/evaluation_report_template.md`
+* **Expected Deliverables:** A reusable reporting markdown structure.
+* **Completion Criteria:** Captures environment variables, snapshots, procedure records, and limits final evaluation outputs strictly to the single-state ACTF boundaries.
+* **Verification Activities:** Simulated dry-run walkthrough tracking variable inputs.
+
+#### Task 5: Verify the Governance Asset Set
+
+* **Objective:** Execute strict, non-destructive validation checks across the integrated set.
+* **Affected Files:** None (Read-Only validation of the 4 generated files).
+* **Expected Deliverables:** A verified internal metadata log matching all Section 5 compliance goals.
+* **Completion Criteria:** Zero broken Markdown cross-links, passing regression runs via `pytest`, and zero unmapped criteria.
+* **Verification Activities:** Link linting tool sweeps and regression test runner baseline executions.
+
+#### Task 6: Complete the Sprint 005 Retrospective
+
+* **Objective:** Document sprint outcomes, metrics, and observations.
+* **Affected Files:** `docs/retrospectives/retrospective_sprint_005.md`
+* **Expected Deliverables:** Complete retrospective log artifact.
+* **Completion Criteria:** Authored exclusively after Task 5 passes, capturing actual deviations without amending scope baselines.
+* **Verification Activities:** Final text evaluation for accuracy against sprint logs.
+
+---
+
+### 4. Risk Assessment & Mitigations
+
+* **Risk 1 (Governance Boundary Blurring):** Text within the *Compliance Test Catalog* or templates might inadvertently redefine or rewrite core parameters of ACTF or RGV.
+* *Mitigation:* Treat pre-existing governance assets as read-only constants. Utilize append-only external references rather than text replication.
+
+
+* **Risk 2 (Scope Expansion Drift):** The authoring of `CT-001` or report templates might tempt a developer to write verification automation scripts, regex code, or CI test triggers.
+* *Mitigation:* Strict directory path isolation. The implementation engine will operate strictly within file-type constraints (.md) and path configurations specified in Section 2.
+
+
+* **Risk 3 (False Evaluation Artifact Clutter):** A dry-run walkthrough of the report template could generate transient execution files masquerading as real compliance evaluations.
+* *Mitigation:* Ensure walkthrough metadata is clearly flagged as `[STRUCTURAL_MOCK_VALIDATION]` and explicitly excluded from git commit staging.
+
+
+
+---
+
+### 5. Validation Strategy
+
+Validation is structured to achieve maximum consistency verification before staging for review:
+
+* **Repository & Path Consistency:** Enforce strict filename match verification. A post-task sweep will verify that exactly the five files specified exist at the exact, case-sensitive paths designated by the contract.
+* **Governance & Terminology Alignment:** Run text matches across all newly written artifacts to verify compliance state definitions are restricted to **PASS**, **FAIL**, or **INCONCLUSIVE**. Any deviation or introduction of numeric grades triggers an immediate validation failure.
+* **Documentation & Link Integrity:** Execute verification sweeps of all localized relative Markdown hyper-links to ensure seamless cross-document lookups without pointing to missing targets.
+* **Verification Evidence Management:** Maintain a persistent validation record log recording path outputs, the final clean repository git diff, and the console output of the standard `pytest` regression run to prove zero runtime code side effects took place.
+
+---
+
+### 6. Repository Compliance & Scope Locking
+
+To guarantee that engineering execution never exceeds the contract boundaries, the following operational constraints are established:
+
+* **The Stop-Work Rule:** If engineering discovery shows that an existing governance file (e.g., ACTF, RGV) contains a typo or requires modification to complete a task, **work must instantly stop**. No developer is authorized to execute out-of-scope adjustments silently.
+* **Scope Change Mitigation:** Any requirement shift, directory relocation, or alteration of completion parameters defaults to a change block.
+* **Re-Approval Trigger:** Work remains frozen until a formal scope revision is compiled, presented to the *Architecture Owner*, and a new, re-approved Execution Contract baseline is officially signed off and cut.
+
+---
+
+### 7. Questions & Ambiguities
+
+* **Contract Evaluation:** The approved *Sprint 005 Execution Contract (Version 1.0)* is highly coherent, explicitly bounded, and establishes exhaustive criteria for every required path and artifact.
+* **Finding:** **The contract is sufficiently clear for implementation.** No ambiguities or conflicting directives exist that would prevent execution within governance bounds.
+
+---
+
+### 8. Readiness Assessment
+
+**READY**
+
+--------------------------------------------------------------
+--------------------------------------------------------------
+
+---------------  bid by codex --------------------------------
+I’ll inspect the repository and approved Sprint 005 governance artifacts read-only, then produce the proposal without changing files.
+
+The contract authorizes only four Phase B governance assets plus a post-verification retrospective. I’m checking its remaining validation gates and the referenced governance-layer definitions before assessing readiness.
+
+# Engineering Execution Proposal — Sprint 005
+
+## 1. Repository Inspection
+
+The canonical authority is `engineering/execution_contracts/sprint_005_execution_contract.md`, Version 1.0, approved 2026-07-01.
+
+Sprint 005 Phase B will operationalize the existing RGV → RGAM → ACTF governance architecture through documentation-based validation assets. Phase A artifacts already exist and are read-only implementation inputs.
+
+Approved repository changes are limited to creating:
+
+- `docs/governance/compliance_tests/README.md`
+- `docs/governance/compliance_tests/compliance_test_template.md`
+- `docs/governance/compliance_tests/CT-001-repository-discovery.md`
+- `docs/governance/templates/evaluation_report_template.md`
+- `docs/retrospectives/retrospective_sprint_005.md`, only after verification
+
+No existing files may be modified or deleted.
+
+Out of scope includes:
+
+- Changes under `src/` or `tests/`
+- Runtime features or repository implementation
+- Compliance automation, scripts, hooks, or CI changes
+- Usage or statistics features
+- Modifications to RGV, RGAM, ACTF, governance architecture, policy, or contributor guidance
+- Execution of CT-001
+- Production of an evaluation report
+- Sprint 006 work
+
+The repository currently contains an unrelated untracked root file. It will be treated as pre-existing state and neither modified nor included in the Sprint 005 diff.
+
+## 2. Execution Strategy
+
+Execution will follow the contract’s dependency order:
+
+1. Establish the catalog and compliance-test template.
+2. Define CT-001 using the completed template and catalog conventions.
+3. Create the evaluation-report template using ACTF evidence and result semantics.
+4. Verify the four assets as one governance system.
+5. Create the retrospective from actual verification evidence.
+
+The catalog and test template may be prepared independently, but downstream work will remain sequential. This ensures that CT-001 is based on an established structure and that the report template reflects the same evidence model.
+
+Existing governance artifacts will be treated as authorities:
+
+- RGV defines why governance is validated.
+- RGAM defines what qualities are assured.
+- ACTF defines how evaluation works.
+- The catalog defines individual tests.
+- The report template records executions without defining methodology.
+
+Tasks 1–4 retain the contract’s Class B classification and approved TIAs. Verification and retrospective remain Class A. No new triage interpretation will replace the approved analysis.
+
+## 3. Task Decomposition
+
+### Task 1 — Compliance Test Catalog
+
+- **Objective:** Establish the authoritative entry point for compliance-test discovery.
+- **File affected:** `docs/governance/compliance_tests/README.md`
+- **Deliverable:** Catalog purpose, ACTF relationship, organization and identifier conventions, and CT-001 index entry.
+- **Completion criteria:** CT-001 is indexed by identifier, title, domain, and relative link; test definitions are distinguished from executions and reports; higher governance layers are not redefined.
+- **Verification:** Review authority boundaries, naming, terminology, and relative links against ACTF and `governance_architecture.md`.
+
+### Task 2 — Compliance Test Template
+
+- **Objective:** Translate ACTF’s required test structure into a reusable authoring template.
+- **File affected:** `docs/governance/compliance_tests/compliance_test_template.md`
+- **Deliverable:** A contributor-independent template containing all eleven ACTF fields.
+- **Completion criteria:** Every required field is explicit; evidence and result concepts remain distinct; permitted states are limited to PASS, FAIL, and INCONCLUSIVE.
+- **Verification:** Perform a field-by-field traceability comparison with ACTF’s “Compliance Test Structure” and “Compliance States.”
+
+### Task 3 — CT-001 Repository Discovery
+
+- **Objective:** Define a reproducible test of repository-governance discoverability.
+- **File affected:** `docs/governance/compliance_tests/CT-001-repository-discovery.md`
+- **Deliverable:** A complete CT-001 definition mapped to RGAM GP-001.
+- **Completion criteria:** All template fields are present; initial conditions use repository-only knowledge; procedures evaluate observable behavior; evidence is reproducible; result conditions are distinguishable; the test is not executed.
+- **Verification:** Check template conformance, GP-001 traceability, repository-first constraints, observable criteria, and compatibility with the catalog.
+
+### Task 4 — Evaluation Report Template
+
+- **Objective:** Define a reusable record for compliance-evaluation evidence and outcomes.
+- **File affected:** `docs/governance/templates/evaluation_report_template.md`
+- **Deliverable:** Generic report structure usable with CT-001 and later tests.
+- **Completion criteria:** Captures snapshot, artifact versions, task, contributor type, environment, observations, evidence, criterion analysis, findings, limitations, follow-up, and exactly one ACTF result state.
+- **Verification:** Trace fields to ACTF and perform a structural CT-001 walkthrough without creating or claiming an evaluation.
+
+### Task 5 — Integrated Verification
+
+- **Objective:** Demonstrate that the four Phase B assets satisfy the contract collectively.
+- **Files affected:** None.
+- **Deliverable:** Completed validation checklist, review observations, final diff, link results, and `pytest` result.
+- **Completion criteria:** Every contract validation item has a result; all acceptance criteria applicable before retrospective pass; no unauthorized path has changed.
+- **Verification:** Governance responsibility review, field traceability, link checks, cold-start review, structural walkthrough, final diff inspection, and full `pytest`.
+
+### Task 6 — Sprint Retrospective
+
+- **Objective:** Close Sprint 005 with a factual record of implementation and verification.
+- **File affected:** `docs/retrospectives/retrospective_sprint_005.md`
+- **Deliverable:** Retrospective recording outcomes, verification evidence, deviations, findings, and follow-up ownership.
+- **Completion criteria:** Created only after Task 5; records actual results; explicitly identifies whether deviations occurred; does not add new requirements or expand scope.
+- **Verification:** Compare every retrospective statement with preserved verification evidence and the final diff.
+
+## 4. Risk Assessment
+
+| Risk | Type | Mitigation |
+|---|---|---|
+| New documents duplicate or contradict existing authorities | Governance | Use explicit references and conduct responsibility and terminology reviews. |
+| Work expands into automation, runtime changes, or governance amendments | Governance | Enforce the exact authorized-path allowlist and stop immediately on any required deviation. |
+| CT-001 relies on subjective judgment or hidden context | Engineering | Specify observable actions, repository-only initial conditions, concrete evidence, and distinct result criteria. |
+| Template or CT-001 omits ACTF fields | Engineering | Maintain field-level ACTF traceability during authoring and verification. |
+| Report lacks reproducibility context | Engineering | Require every ACTF evaluation-subject field and validate through the structural walkthrough. |
+| Structural walkthrough is mistaken for an actual evaluation | Governance | Label it solely as verification; create no evaluation report or compliance result. |
+| Links or filenames drift from approved paths | Engineering | Use exact case-sensitive paths and verify every relative link. |
+| Existing unrelated work contaminates the Sprint diff | Governance | Capture the initial working-tree state and compare only Sprint-created paths against that baseline. |
+| Verification evidence is incomplete | Governance | Record every Section 5 check, command, outcome, finding, and final diff reference before retrospective creation. |
+
+## 5. Validation Strategy
+
+Repository consistency will be verified by:
+
+- Confirming exactly the four Phase B assets and subsequent retrospective are created at authorized paths.
+- Comparing final state against the initial working-tree baseline.
+- Confirming no existing file, runtime path, test, script, CI file, configuration, or unrelated documentation changed.
+- Running the complete existing `pytest` suite.
+
+Governance consistency will be verified by:
+
+- Preserving RGV, RGAM, ACTF, catalog, report, and sprint-layer responsibilities.
+- Confirming CT-001 maps to GP-001.
+- Revalidating the approved Class B TIAs against the actual implementation.
+- Conducting a repository-only cold-start review.
+- Ensuring no compliance execution is claimed.
+
+Documentation consistency will be verified through:
+
+- ACTF field traceability for the template and CT-001.
+- Terminology comparison across all governing artifacts.
+- Relative-link and case-sensitivity checks.
+- Review for duplicated authority, contradiction, or circular responsibility.
+
+Verification evidence will include:
+
+- A result for every contract validation item
+- Final repository diff
+- `pytest` command and result
+- Link and traceability review results
+- Cold-start and structural-walkthrough observations
+- Governance findings and their disposition
+- Retrospective references to the preserved evidence
+
+## 6. Repository Compliance
+
+Implementation will use an explicit allowlist containing only the five contract-authorized paths. Existing governance authorities and all other repository files remain read-only.
+
+If a typo, contradiction, missing requirement, required existing-file modification, additional artifact, automation need, or changed completion criterion is discovered, implementation will stop at the affected dependency boundary.
+
+Scope changes will not be handled through informal interpretation. The Execution Contract must be revised and approved by the Architecture Owner before work resumes. Re-approval is required for any new path, modified existing file, changed governance responsibility, different test decision, runtime effect, compliance execution, or other deviation.
+
+Verification failure may be corrected only when the correction remains within the approved file and requirement boundaries. Otherwise, stop-work and re-approval apply.
+
+## 7. Questions
+
+No implementation-blocking ambiguity was found. The approved Execution Contract is sufficiently clear for implementation.
+
+Verification evidence must be preserved without creating an additional unauthorized repository artifact; the authorized retrospective will record and reference the execution and review evidence.
+
+## 8. Readiness Assessment
+
+READY
+
