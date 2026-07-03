@@ -13,7 +13,7 @@
 * **Approval Date**: 2026-07-01
 * **Revision Date**: 2026-07-02
 * **Previous Approved Version**: Version 1.0 at `engineering/execution_contracts/sprint_005_execution_contract.md`
-* **Current Implementation Authority**: This document, `engineering/execution_contracts/sprint_005_execution_contract_v1.1.2.md`
+* **Current Implementation Authority**: This document, `engineering/execution_contracts/sprint_005_execution_contract.md`
 
 ---
 
@@ -51,7 +51,7 @@ Implementation shall strictly follow this contract. If implementation cannot fol
 ### Files to Create
 
 1. **Compliance Test Catalog**
-   * *Path*: `docs/governance/compliance_tests/README.md`
+   * *Path*: `docs/governance/compliance_tests/compliance_test_index.md`
    * *Why*: Provides the authoritative catalog entry point, explains the relationship between ACTF and individual compliance tests, defines catalog organization and identifier conventions, and indexes CT-001 without duplicating ACTF responsibilities.
 
 2. **Compliance Test Template**
@@ -87,7 +87,7 @@ None.
 ### Task 1: Establish the Compliance Test Catalog
 
 * **Objective**: Create the catalog entry point and define how independently maintained compliance tests are organized and discovered.
-* **Affected Files**: `docs/governance/compliance_tests/README.md`
+* **Affected Files**: `docs/governance/compliance_tests/compliance_test_index.md`
 * **Expected Outcome**: Contributors can identify the catalog's purpose, governing framework, test naming convention, available tests, and boundary from evaluation reports.
 * **Completion Criteria**:
   * The catalog identifies ACTF as the authority for compliance-test methodology and structure.
@@ -262,7 +262,7 @@ Tasks 1 and 2 may be implemented independently after authorization. No other tas
 ### 5.2 Structural and Repository Validation
 
 1. Confirm that exactly these Phase B assets exist at the proposal-defined paths:
-   * `docs/governance/compliance_tests/README.md`
+   * `docs/governance/compliance_tests/compliance_test_index.md`
    * `docs/governance/compliance_tests/compliance_test_template.md`
    * `docs/governance/compliance_tests/CT-001-repository-discovery.md`
    * `docs/governance/templates/evaluation_report_template.md`
@@ -335,7 +335,7 @@ Rollback must use reviewed version-control changes. Destructive working-tree res
 
 Sprint 005 Phase B is acceptable for closure only when all of the following are true:
 
-1. The Architecture Owner approved the Implementation Plan, and implementation was performed only under the current approved Sprint 005 Execution Contract, Version 1.1.2, at `engineering/execution_contracts/sprint_005_execution_contract_v1.1.2.md`.
+1. The Architecture Owner approved the Implementation Plan, and implementation was performed only under the current approved Sprint 005 Execution Contract, Version 1.1.2, at `engineering/execution_contracts/sprint_005_execution_contract.md`.
 2. The four Phase B governance assets exist at the exact paths specified by the Sprint 005 Architecture Proposal.
 3. The Compliance Test Catalog clearly indexes CT-001 and preserves the authority boundary between ACTF, test definitions, and evaluation reports.
 4. The Compliance Test Template contains every field required by ACTF.
@@ -357,7 +357,7 @@ Sprint 005 Phase B is acceptable for closure only when all of the following are 
 * **Approval Date**: 2026-07-01
 * **Revision Date**: 2026-07-02
 * **Previous Approved Version**: Version 1.0 at `engineering/execution_contracts/sprint_005_execution_contract.md`
-* **Current Implementation Authority**: This document, `engineering/execution_contracts/sprint_005_execution_contract_v1.1.2.md`
+* **Current Implementation Authority**: This document, `engineering/execution_contracts/sprint_005_execution_contract.md`
 * **Required Revisions**: Completed; no outstanding revisions
 
 This approved Version 1.1.2 document is the official Sprint 005 Execution Contract and the current canonical authorization for Sprint 005 implementation. Any deviation requires implementation to stop and the contract to be revised and re-approved before work continues.

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This template records one execution of a compliance test defined in the [Compliance Test Catalog](../compliance_tests/README.md).
+This template records one execution of a compliance test defined in the [Compliance Test Catalog](../compliance_tests/compliance_test_index.md).
 
 The [AI Compliance Test Framework](../ai_compliance_test_framework.md) (ACTF) is authoritative for evaluation methodology, evidence requirements, findings, and compliance states.
 
