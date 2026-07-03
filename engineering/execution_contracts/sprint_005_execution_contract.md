@@ -1,22 +1,31 @@
-# Approved Execution Contract (Version 1.0)
+# Approved Execution Contract (Version 1.1.2)
 # Sprint 005 — Repository Governance Validation Assets
 
 ## Document Metadata
 
 * **Title**: Sprint 005 — Repository Governance Validation Assets Approved Execution Contract
-* **Version**: 1.0
+* **Version**: 1.1.2
 * **Status**: Approved
 * **Based On**: `docs/sprints/sprint_005_architecture_proposal.md`
 * **Governing Policy**: `docs/governance/engineering_change_governance_policy.md`
 * **Contributor Workflow**: `docs/governance/engineering_contributor_guide.md`
 * **Produced With**: OpenAI Codex
 * **Approval Date**: 2026-07-01
+* **Revision Date**: 2026-07-02
+* **Previous Approved Version**: Version 1.0 at `engineering/execution_contracts/sprint_005_execution_contract.md`
+* **Current Implementation Authority**: This document, `engineering/execution_contracts/sprint_005_execution_contract_v1.1.2.md`
 
 ---
 
 ## Purpose
 
-This document is the approved Execution Contract for the remaining Sprint 005 work. It records the Architecture Owner's approval and authorizes only the implementation activities defined below.
+This document is the approved Execution Contract for the remaining Sprint 005 work.
+
+Version 1.1.2 is a behavior-preserving refinement of Version 1.0. It clarifies execution dependencies, read-only authorities, stop-work conditions, and readiness evidence without changing Sprint 005 authority, scope, deliverables, TIA decisions, verification requirements, rollback rules, or acceptance criteria.
+
+For Sprint 005 implementation, this document is the current implementation authority. Version 1.0 remains preserved as the previous approved baseline.
+
+It records the Architecture Owner's approval and authorizes only the implementation activities defined below.
 
 The plan defines the repository changes required to implement Phase B of the reviewed Sprint 005 Architecture Proposal: the initial Compliance Test Catalog, Compliance Test Template, CT-001 Repository Discovery test, and Evaluation Report Template.
 
@@ -326,7 +335,7 @@ Rollback must use reviewed version-control changes. Destructive working-tree res
 
 Sprint 005 Phase B is acceptable for closure only when all of the following are true:
 
-1. The Architecture Owner approved the Implementation Plan, the approved version became the Sprint 005 Execution Contract at `engineering/execution_contracts/sprint_005_execution_contract.md`, and implementation was performed only under that canonical artifact.
+1. The Architecture Owner approved the Implementation Plan, and implementation was performed only under the current approved Sprint 005 Execution Contract, Version 1.1.2, at `engineering/execution_contracts/sprint_005_execution_contract_v1.1.2.md`.
 2. The four Phase B governance assets exist at the exact paths specified by the Sprint 005 Architecture Proposal.
 3. The Compliance Test Catalog clearly indexes CT-001 and preserves the authority boundary between ACTF, test definitions, and evaluation reports.
 4. The Compliance Test Template contains every field required by ACTF.
@@ -346,6 +355,63 @@ Sprint 005 Phase B is acceptable for closure only when all of the following are 
 * **Architecture Owner**: Approved
 * **Architecture Owner Approval**: Granted
 * **Approval Date**: 2026-07-01
+* **Revision Date**: 2026-07-02
+* **Previous Approved Version**: Version 1.0 at `engineering/execution_contracts/sprint_005_execution_contract.md`
+* **Current Implementation Authority**: This document, `engineering/execution_contracts/sprint_005_execution_contract_v1.1.2.md`
 * **Required Revisions**: Completed; no outstanding revisions
 
-This approved document is the official Sprint 005 Execution Contract and the canonical authorization for Sprint 005 implementation. Any deviation requires implementation to stop and the contract to be revised and re-approved before work continues.
+This approved Version 1.1.2 document is the official Sprint 005 Execution Contract and the current canonical authorization for Sprint 005 implementation. Any deviation requires implementation to stop and the contract to be revised and re-approved before work continues.
+
+
+---
+
+# Appendix A — Execution Dependency
+
+```text
+Sprint 005 Execution Contract
+       ┌─────┴─────┐
+       ↓           ↓
+Task 1: Compliance Test Catalog
+Task 2: Compliance Test Template
+       └─────┬─────┘
+             ↓
+Task 3: CT-001 Repository Discovery
+             │
+Task 2 ─────→ Task 4: Evaluation Report Template
+             │
+             ↓
+Task 5: Integrated Verification
+             ↓
+Task 6: Sprint 005 Retrospective
+```
+
+# Appendix B — Execution Constraints
+
+## Read-only Authorities
+
+- Engineering Governance Policy
+- Engineering Contributor Guide
+- Governance Architecture
+- Repository Governance Validation (RGV)
+- Repository Governance Assurance Model (RGAM)
+- AI Compliance Test Framework (ACTF)
+
+## Authorized Paths
+
+Implementation is limited to the five deliverables authorized by this Execution Contract.
+
+## Stop-work Conditions
+
+Implementation shall stop immediately if:
+- an existing governance authority requires modification;
+- a new repository artifact becomes necessary;
+- an approved completion criterion cannot be satisfied;
+- implementation exceeds the approved scope.
+
+Work may resume only after the issue has been documented, the Execution Contract has been revised if required, and the revised contract has been formally re-approved by the Architecture Owner.
+
+# Appendix C — Engineering Readiness
+
+An independent Engineering Readiness Review may be performed before implementation as a verification activity. Any review outcome is informative evidence only and does not introduce additional contractual requirements or alter implementation authorization.
+
+These appendices refine implementation guidance only. They do not alter Sprint 005 authority, scope, deliverables, TIA decisions, verification requirements, rollback rules, acceptance criteria, or implementation behavior.
